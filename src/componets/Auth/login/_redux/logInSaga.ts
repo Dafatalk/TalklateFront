@@ -28,7 +28,6 @@ export function* uploadlogInNewSaga(action: logInAction) {
     const response: AxiosResponse<{ token: string }> = yield LogInService.login(
       action.payload.user
     );
-    console.log("ESTE SERIA EL TOKEN: " + response.data.token);
 
     yield put(uploadLogInSuccessReducer(response.data.token));
   } catch (ex) {

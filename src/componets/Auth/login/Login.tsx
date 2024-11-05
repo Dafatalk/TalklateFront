@@ -26,12 +26,10 @@ export const LogIn = () => {
       Cookies.set("token", result.token ?? "NADA", { expires: 7 }); // Expira en 7 días
       navigate("/request");
     } else {
-      console.log(result.error);
     }
   }, [result]);
 
   const handleLoginClick = () => {
-    console.log(user);
     dispatch(uploadLogInAction(user));
   };
   return (

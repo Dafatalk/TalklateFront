@@ -8,11 +8,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { RequestModel } from "../../../../core/models/RequestModel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { uploadRequestAction } from "../_redux/requestAddAction";
 
 export const RequestAddForm = () => {
-  // const result = useSelector((state: RootState) => state.requestNew.result);
+  const result = useSelector((state: RootState) => state.requestNew.result);
 
   const dispatch = useDispatch();
   const [request, setRequest] = useState<RequestModel>({
@@ -22,6 +22,12 @@ export const RequestAddForm = () => {
     startDate: new Date(),
     finishDate: new Date(),
   });
+  useEffect(() => {
+    if (result && result.error === false) {
+      dispatch(closeNewRequest());
+    }
+  }, [result, dispatch]);
+
   const isRequestEmpty = () => {
     return Object.values(request).some((value) => !value);
   };
