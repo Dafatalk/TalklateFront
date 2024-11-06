@@ -23,4 +23,6 @@ export interface ResultModel {
   messageUser?: string;
 
   token?: string;
+
+  list?: Array<any>;
 }

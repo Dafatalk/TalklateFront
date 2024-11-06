@@ -16,6 +16,7 @@ export const RequestAddForm = () => {
 
   const dispatch = useDispatch();
   const [request, setRequest] = useState<RequestModel>({
+    id: "",
     description: "",
     originLanguage: "",
     targetLanguage: "",
