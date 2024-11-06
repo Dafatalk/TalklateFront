@@ -27,10 +27,10 @@ export const Request = () => {
             <section className="page-contain">
               <Card className="data-card">
                 <Box sx={{ justifyContent: "flex-end", display: "flex" }}>
-                  <RequestEdit request={}></RequestEdit>
-                  <RequestDelete id=""></RequestDelete>
+                  <RequestEdit request={request}></RequestEdit>
+                  <RequestDelete id={request.id}></RequestDelete>
                 </Box>
-                <RequestList request={}></RequestList>
+                <RequestList request={request}></RequestList>
               </Card>
               <RequestAdd></RequestAdd>
             </section>
