@@ -19,7 +19,7 @@ export const Request = () => {
 
   useEffect(() => {
     dispatch(RequestListAction());
-  }, [dispatch]);
+  }, [dispatch, RequestAddForm]);
   return (
     <>
       <section className="page-contain">

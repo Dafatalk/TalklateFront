@@ -4,10 +4,13 @@ import loginRegisterReducer from "../componets/Auth/_redux/loginRegisterReducer"
 import logInReducer from "../componets/Auth/login/_redux/logInReducer";
 import addFormReducer from "../componets/request/requestAdd/requestAddForm/_redux/addFormReducer";
 import requestListReducer from "../componets/request/requestList/_redux/requestListReducer";
+import requestEditReducer from "../componets/request/requestEdit/_redux/requestEditReducer";
+//WATCHERS:
 import { watchSingInAsync } from "../componets/Auth/register/_redux/singInSaga";
 import { watchlogInAsync } from "../componets/Auth/login/_redux/logInSaga";
 import { watchRequestNewAsync } from "../componets/request/requestAdd/_redux/requestAddSaga";
 import { watchrequestListAsync } from "../componets/request/requestList/_redux/requestListSaga";
+import { watchrequestEditAsync } from "../componets/request/requestEdit/_redux/requestEditSaga";
 
 export const mapReducer = {
   requestNew: requestAddReducer,
@@ -16,10 +19,12 @@ export const mapReducer = {
   login: logInReducer,
   addformstate: addFormReducer,
   listRequest: requestListReducer,
+  editRequest: requestEditReducer,
 };
 export const mapWatchSaga = [
   watchSingInAsync,
   watchlogInAsync,
   watchRequestNewAsync,
   watchrequestListAsync,
+  watchrequestEditAsync,
 ];

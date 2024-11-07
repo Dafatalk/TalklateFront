@@ -10,6 +10,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { RequestModel } from "../../../../core/models/RequestModel";
 import { useEffect, useState } from "react";
 import { uploadRequestAction } from "../_redux/requestAddAction";
+import { RequestListAction } from "../../requestList/_redux/requestListAction";
 
 export const RequestAddForm = () => {
   const result = useSelector((state: RootState) => state.requestNew.result);
@@ -35,6 +36,7 @@ export const RequestAddForm = () => {
   const handleUploadClick = () => {
     console.log(request);
     dispatch(uploadRequestAction(request));
+    dispatch(RequestListAction());
   };
   const isNewRequestOpen = useSelector(
     (state: RootState) => state.addformstate.isNewRequestOpen
