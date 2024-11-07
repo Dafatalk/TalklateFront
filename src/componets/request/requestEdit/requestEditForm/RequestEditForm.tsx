@@ -15,6 +15,22 @@ import { uploadRequestEditAction } from "../_redux/requestEditAction";
 export const RequestEditForm = () => {
   const result = useSelector((state: RootState) => state.editRequest.result);
 
+  const requestData = useSelector(
+    (state: RootState) => state.editFormState.requestData
+  );
+  useEffect(() => {
+    if (requestData) {
+      setRequest({
+        id: requestData.id,
+        description: requestData.description,
+        originLanguage: requestData.originLanguage,
+        targetLanguage: requestData.targetLanguage,
+        startDate: requestData.startDate,
+        finishDate: requestData.finishDate,
+      });
+    }
+  }, [requestData]);
+
   const dispatch = useDispatch();
   const [request, setRequest] = useState<RequestModel>({
     id: "",
@@ -30,17 +46,17 @@ export const RequestEditForm = () => {
     }
   }, [result, dispatch]);
 
-  const isRequestEmpty = () => {
-    return Object.values(request).some((value) => !value);
-  };
+  //   const isRequestEmpty = () => {
+  //     return Object.values(request).some((value) => !value);
+  //   };
   const handleUploadClick = () => {
-    console.log(request);
     dispatch(uploadRequestEditAction(request));
     dispatch(RequestListAction());
   };
   const isRequestEditOpen = useSelector(
     (state: RootState) => state.editFormState.isEditFormOpen
   );
+
   const Today = new Date();
   const handleCloseClick = () => {
     dispatch(closeEditForm());
@@ -64,6 +80,7 @@ export const RequestEditForm = () => {
                 className="inpute"
                 type="text"
                 placeholder=" "
+                value={request.originLanguage.toString()}
                 onChange={(event) =>
                   setRequest({
                     ...request,
@@ -79,6 +96,7 @@ export const RequestEditForm = () => {
                 className="inpute"
                 type="text"
                 placeholder=" "
+                value={request.targetLanguage.toString()}
                 onChange={(event) =>
                   setRequest({
                     ...request,
@@ -93,6 +111,7 @@ export const RequestEditForm = () => {
               <DatePicker
                 label="StartDate"
                 minDate={dayjs(Today)}
+                value={dayjs(request.startDate)}
                 onChange={(newValue: Dayjs | null) => {
                   if (newValue) {
                     setRequest({
@@ -137,6 +156,7 @@ export const RequestEditForm = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="EndDate"
+                value={dayjs(request.finishDate)}
                 onChange={(newValue: Dayjs | null) => {
                   if (newValue) {
                     setRequest({
@@ -185,7 +205,7 @@ export const RequestEditForm = () => {
               minRows={3}
               className="inputD"
               placeholder="  "
-              value={request.description} // Configuramos el valor del text area desde el estado
+              value={request.description}
               onChange={(event) =>
                 setRequest({
                   ...request,

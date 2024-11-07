@@ -14,8 +14,7 @@ export const RequestEdit = (data: requestData) => {
   console.log(request.description);
 
   const handleOpenClick = () => {
-    dispatch(openEditForm());
-    console.log("SI ENTRAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    dispatch(openEditForm(request));
   };
   return (
     <IconButton
