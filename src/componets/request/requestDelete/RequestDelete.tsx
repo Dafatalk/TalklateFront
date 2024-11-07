@@ -6,7 +6,9 @@ interface DeletProps {
 }
 
 export const RequestDelete = (prop: DeletProps) => {
-  const id = prop;
+  const { id } = prop;
+  console.log(id);
+
   return (
     <IconButton
       sx={{

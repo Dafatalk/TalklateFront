@@ -6,6 +6,9 @@ interface requestData {
   request: RequestModel;
 }
 export const RequestEdit = (data: requestData) => {
+  const { request } = data;
+  console.log(request.description);
+
   return (
     <IconButton
       sx={{

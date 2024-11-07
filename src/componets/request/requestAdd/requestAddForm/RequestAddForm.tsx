@@ -195,9 +195,7 @@ export const RequestAddForm = () => {
             <span></span>
           </Box>
           <Box className="input-box">
-            <Button disabled={isRequestEmpty()} onClick={handleUploadClick}>
-              UPLOAD
-            </Button>
+            <Button onClick={handleUploadClick}>UPLOAD</Button>
           </Box>
         </Box>
       </Box>

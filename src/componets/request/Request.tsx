@@ -16,30 +16,32 @@ export const Request = () => {
   const requestList = useSelector(
     (state: RootState) => state.listRequest.result.list
   );
+
   useEffect(() => {
     dispatch(RequestListAction());
   }, [dispatch]);
   return (
     <>
-      {requestList && requestList.length > 0 ? (
-        requestList.map((request) => (
-          <Box key={request.id}>
-            <section className="page-contain">
+      <section className="page-contain">
+        {requestList && requestList.length > 0 ? (
+          requestList.map((request) => (
+            <Box key={request.id}>
               <Card className="data-card">
                 <Box sx={{ justifyContent: "flex-end", display: "flex" }}>
                   <RequestEdit request={request}></RequestEdit>
                   <RequestDelete id={request.id}></RequestDelete>
                 </Box>
-                <RequestList request={request}></RequestList>
+                <RequestList request={request} />
               </Card>
-              <RequestAdd></RequestAdd>
-            </section>
-            <RequestAddForm></RequestAddForm>
-          </Box>
-        ))
-      ) : (
-        <p>No requests found.</p>
-      )}
+            </Box>
+          ))
+        ) : (
+          <h1>No requests found.</h1>
+        )}
+      </section>
+
+      <RequestAddForm></RequestAddForm>
+      <RequestAdd></RequestAdd>
     </>
   );
 };
