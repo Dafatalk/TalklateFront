@@ -1,38 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ResultModel } from "../../../../core/redux/resultModel";
 
 export const REQUEST_DELETE_REDUCER_NAME = "requestDeleteReducer";
 
 export interface RequestDeleteReducerModel {
   // CRAMERCASE
-  requestDelete: any; //AS A RequestDeleteMODEL
-  result: any; //AS A RESULT MODEL
+  id: string; //AS A RequestDeleteMODEL
+  result: ResultModel; //AS A RESULT MODEL
 }
 
 export const requestDeleteSlice = createSlice({
   name: REQUEST_DELETE_REDUCER_NAME,
   initialState: {
-    requestDelete: {},
+    id: "",
     result: {},
   } as RequestDeleteReducerModel,
   reducers: {
     resetResultReducer: (state, action) =>
       ({
         ...state,
-        requestDelete: {},
+        id: "",
         result: {
           action,
           error: false,
         },
-      } as RequestDeleteReducerModel),
-    uploadrequestDeleteReducer: (state, action) =>
+      }) as RequestDeleteReducerModel,
+    uploadRequestDeleteReducer: (state, action) =>
       ({
         ...state,
         result: {
           action,
           error: false,
         },
-      } as RequestDeleteReducerModel),
-    uploadrequestDeleteSuccessReducer: (state, action) =>
+      }) as RequestDeleteReducerModel,
+    uploadRequestDeleteSuccessReducer: (state, action) =>
       ({
         ...state,
         result: {
@@ -40,8 +41,8 @@ export const requestDeleteSlice = createSlice({
           error: false,
           messageUser: "The requestDelete was uploaded succesfully",
         },
-      } as RequestDeleteReducerModel),
-    uploadrequestDeleteErrorReducer: (state, action) =>
+      }) as RequestDeleteReducerModel,
+    uploadRequestDeleteErrorReducer: (state, action) =>
       ({
         ...state,
         result: {
@@ -49,16 +50,16 @@ export const requestDeleteSlice = createSlice({
           error: true,
           messageUser: action.payload.response.data.message,
         },
-      } as RequestDeleteReducerModel),
+      }) as RequestDeleteReducerModel,
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
   resetResultReducer,
-  uploadrequestDeleteErrorReducer,
-  uploadrequestDeleteReducer,
-  uploadrequestDeleteSuccessReducer,
+  uploadRequestDeleteErrorReducer,
+  uploadRequestDeleteReducer,
+  uploadRequestDeleteSuccessReducer,
 } = requestDeleteSlice.actions;
 
 export default requestDeleteSlice.reducer;

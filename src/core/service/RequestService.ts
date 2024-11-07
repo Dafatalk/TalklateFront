@@ -54,7 +54,7 @@ export class RequestService {
     try {
       const token = Cookies.get("token");
 
-      return axios.post<RequestModel>(this.deletRequestEndPoint, id, {
+      return axios.delete<RequestModel>(`${this.deletRequestEndPoint}/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

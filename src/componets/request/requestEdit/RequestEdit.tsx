@@ -11,7 +11,6 @@ export const RequestEdit = (data: requestData) => {
   const dispatch = useDispatch();
 
   const { request } = data;
-  console.log(request.description);
 
   const handleOpenClick = () => {
     dispatch(openEditForm(request));
