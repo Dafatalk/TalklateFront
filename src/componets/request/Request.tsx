@@ -2,6 +2,8 @@ import { Box, Card } from "@mui/material";
 import { RequestDelete } from "./requestDelete/RequestDelete";
 import { RequestEdit } from "./requestEdit/RequestEdit";
 import { RequestList } from "./requestList/RequestList";
+import { RequestEditForm } from "./requestEdit/requestEditForm/RequestEditForm";
+
 import "./Request.css";
 import { RequestAdd } from "./requestAdd/RequestAdd";
 import { RequestAddForm } from "./requestAdd/requestAddForm/RequestAddForm";
@@ -39,7 +41,7 @@ export const Request = () => {
           <h1>No requests found.</h1>
         )}
       </section>
-
+      <RequestEditForm></RequestEditForm>
       <RequestAddForm></RequestAddForm>
       <RequestAdd></RequestAdd>
     </>

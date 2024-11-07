@@ -1,0 +1,225 @@
+.box {
+  padding: 20px 50px;
+  max-width: 20%;
+  background: #fff;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow:
+    2px 4px 4px #dcdcdc,
+    -2px 4px 4px #dcdcdc;
+  transition: all 0.3s ease-in;
+}
+.box.register-box {
+  position: fixed;
+  bottom: 20px; /* Mueve la caja a la esquina inferior derecha */
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #648483;
+  transition: all 0.3s ease-in;
+  overflow: hidden;
+  box-shadow:
+    2px 4px 4px #dcdcdc,
+    -2px 4px 4px #dcdcdc;
+}
+.box .header {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  color: #4085ae;
+}
+.box .closedHeader {
+  display: none;
+}
+.box .header:before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  display: inline-block;
+  height: 100%;
+  width: 8px;
+  background: #b3c6c2;
+}
+.box .content {
+  padding: 10px;
+}
+.box .content {
+  padding: 10px;
+}
+.box .content .input-box {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+.box .content .input-box input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  height: 40px;
+  line-height: 40px;
+  font-size: 0.9em;
+  outline: none;
+  background: transparent;
+  font-family: verdana, sans-serif;
+}
+.box .content .input-box .inputD {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  height: 80px;
+  line-height: 40px;
+  font-size: 1.3em;
+  outline: none;
+  background: transparent;
+  resize: none;
+  line-height: 1.4;
+}
+.box .content .input-box .inputD:focus + span:first-of-type,
+.box .content .input-box .inputD:not(:placeholder-shown) + span:first-of-type {
+  font-size: 0.8em;
+  top: -10px;
+}
+
+.box .content .input-box input:focus + span:first-of-type,
+.box .content .input-box input:not(:placeholder-shown) + span:first-of-type {
+  font-size: 0.8em;
+  top: -10px;
+}
+.box .content .input-box input:focus ~ span:last-of-type,
+.box .content .input-box input:not(:placeholder-shown) ~ span:last-of-type {
+  width: 100%;
+}
+.box .content .input-box span:first-of-type {
+  color: #ccc;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  text-align-last: left;
+  pointer-events: none;
+  transition: all 0.1s linear;
+}
+.box .content .input-box span:last-of-type {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0px;
+  background: #1f6b98;
+  transition: all 0.2s linear;
+}
+.box .content .input-box button {
+  width: 70%;
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 15px;
+  color: #ccc;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.box .content .input-box .buttone {
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 15px;
+  color: #ccc;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.box .content .input-box button:hover {
+  background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
+  color: #ffff;
+}
+
+.box .content .input-box .buttone:hover {
+  background-image: linear-gradient(to top, #74908e, #97bdbb, #b1c9c8);
+  color: #ffff;
+}
+
+.box.register-box {
+  background-image: linear-gradient(to top, #648483, #86a6a3, #a4c4bd);
+  width: 1;
+  overflow: hidden;
+  border-radius: 50px;
+  transition: all 0.3s ease-in;
+}
+
+.box.register-box .header {
+  color: #fff;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide el espacio en dos columnas iguales */
+  gap: 15px; /* Espacio opcional entre columnas */
+}
+
+.box.register-box .header:before {
+  background: #fff;
+  opacity: 0;
+}
+.box.register-box .header h3 {
+  position: relative;
+  top: -28px;
+  left: -33px;
+  font-size: 14px;
+  transition: all 0.3s linear;
+}
+
+.box.register-box .content .input-box input {
+  color: #fff;
+}
+.box.register-box .content .input-box .inputD {
+  color: #fff;
+}
+.box.register-box .content .input-box .buttone {
+  width: 20%;
+}
+.box.register-box .content .input-box span:last-of-type {
+  background: #fff;
+}
+.box.register-box:not(.open):hover {
+  cursor: pointer;
+}
+.box.register-box .close {
+  color: #fff;
+  font-size: 1.6em;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.box.register-box.open {
+  display: block;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  width: 40%;
+  min-width: 400px;
+  height: 450px; /* Ajusta la altura */
+  transition: all 0.3s ease-in;
+
+  transform: translate(-50%, -50%);
+  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.box.register-box.opent {
+  display: none;
+}
+.box.register-box.open .header:before {
+  opacity: 1;
+}
+.box.register-box.open .header h3 {
+  top: 0;
+  left: 0;
+  font-size: initial;
+}
+.box.register-box.open .close {
+  transform: rotate(135deg);
+  top: 43px;
+  opacity: 1;
+  transition: all 0.3s 0.3s linear;
+}

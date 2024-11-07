@@ -1,20 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// 1. TEMPLATE IN MAYUS
-// 2. Template Cramercase
-// 3. template in minus
+export const TOGGLE_ADD_FORM_REDUCER_NAME = "toggleAddFormReducer";
 
-export const TOGGLE_REGISTER_REDUCER_NAME = "toggleRegisterReducer";
-
-interface RegisterState {
+interface AddFormState {
   isNewRequestOpen: boolean;
 }
 
 export const toggleNewRequestSlice = createSlice({
-  name: TOGGLE_REGISTER_REDUCER_NAME,
+  name: TOGGLE_ADD_FORM_REDUCER_NAME,
   initialState: {
     isNewRequestOpen: false,
-  } as RegisterState,
+  } as AddFormState,
   reducers: {
     openNewRequest: (state) => {
       state.isNewRequestOpen = true;
@@ -25,7 +21,6 @@ export const toggleNewRequestSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { openNewRequest, closeNewRequest } =
   toggleNewRequestSlice.actions;
 
