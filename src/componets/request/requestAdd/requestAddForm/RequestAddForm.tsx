@@ -23,7 +23,7 @@ export const RequestAddForm = () => {
 
   const dispatch = useDispatch();
   const [request, setRequest] = useState<RequestModel>({
-    id: "",
+    id: " ",
     description: "",
     originLanguage: "",
     targetLanguage: "",
@@ -32,9 +32,9 @@ export const RequestAddForm = () => {
     creator: "USER",
   });
 
-  // const isRequestEmpty = () => {
-  //   return Object.values(request).some((value) => !value);
-  // };
+  const isRequestEmpty = () => {
+    return Object.values(request).some((value) => !value);
+  };
 
   const handleUploadClick = () => {
     dispatch(uploadRequestAction(request));
@@ -209,7 +209,9 @@ export const RequestAddForm = () => {
             <span></span>
           </Box>
           <Box className="input-box">
-            <Button onClick={handleUploadClick}>UPLOAD</Button>
+            <Button disabled={isRequestEmpty()} onClick={handleUploadClick}>
+              UPLOAD
+            </Button>
           </Box>
         </Box>
       </Box>

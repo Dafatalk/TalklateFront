@@ -56,9 +56,9 @@ export const RequestEditForm = () => {
     }
   }, [result, dispatch]);
 
-  //   const isRequestEmpty = () => {
-  //     return Object.values(request).some((value) => !value);
-  //   };
+  const isRequestEmpty = () => {
+    return Object.values(request).some((value) => !value);
+  };
   const handleUploadClick = () => {
     dispatch(uploadRequestEditAction(request));
     dispatch(RequestListAction());
@@ -237,7 +237,9 @@ export const RequestEditForm = () => {
             <span></span>
           </Box>
           <Box className="input-box">
-            <Button onClick={handleUploadClick}>UPLOAD</Button>
+            <Button disabled={isRequestEmpty()} onClick={handleUploadClick}>
+              UPLOAD
+            </Button>
           </Box>
         </Box>
       </Box>
