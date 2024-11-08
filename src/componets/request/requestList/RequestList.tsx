@@ -6,6 +6,8 @@ interface RequestDataProps {
 }
 
 export const RequestList = ({ request }: RequestDataProps) => {
+  console.log(request.creator);
+
   return (
     <>
       {request ? (

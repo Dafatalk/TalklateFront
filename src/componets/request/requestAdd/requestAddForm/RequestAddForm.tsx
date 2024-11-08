@@ -17,9 +17,11 @@ import {
   uploadRequestSuccessReducer,
 } from "../_redux/requestAddReducer";
 import { NotificationManager } from "react-notifications";
+import Cookies from "js-cookie"; // Importar js-cookie para acceder a las cookies
 
 export const RequestAddForm = () => {
   const result = useSelector((state: RootState) => state.requestNew.result);
+  const cookiesUsername = Cookies.get("username") || "";
 
   const dispatch = useDispatch();
   const [request, setRequest] = useState<RequestModel>({
@@ -29,7 +31,7 @@ export const RequestAddForm = () => {
     targetLanguage: "",
     startDate: new Date(),
     finishDate: new Date(),
-    creator: "USER",
+    creator: cookiesUsername,
   });
 
   const isRequestEmpty = () => {

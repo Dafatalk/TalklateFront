@@ -1,4 +1,4 @@
-import { Box, Card } from "@mui/material";
+import { Box, Button, Card } from "@mui/material";
 import { RequestDelete } from "./requestDelete/RequestDelete";
 import { RequestEdit } from "./requestEdit/RequestEdit";
 import { RequestList } from "./requestList/RequestList";
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/mapStore";
 import { useEffect } from "react";
 import { RequestListAction } from "./requestList/_redux/requestListAction";
+import Cookies from "js-cookie"; // Importar js-cookie para acceder a las cookies
 
 export const Request = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export const Request = () => {
   const requestList = useSelector(
     (state: RootState) => state.listRequest.result.list
   );
+  const cookiesUsername = Cookies.get("username");
 
   useEffect(() => {
     dispatch(RequestListAction());
@@ -39,8 +41,14 @@ export const Request = () => {
                     left: "30px",
                   }}
                 >
-                  <RequestEdit request={request}></RequestEdit>
-                  <RequestDelete id={request.id}></RequestDelete>
+                  {cookiesUsername === request.creator ? (
+                    <>
+                      <RequestEdit request={request} />
+                      <RequestDelete id={request.id} />
+                    </>
+                  ) : (
+                    <Button size="small">take the job</Button>
+                  )}
                 </Box>
               </Card>
             </Box>
