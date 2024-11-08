@@ -11,6 +11,12 @@ import { RequestModel } from "../../../../core/models/RequestModel";
 import { useEffect, useState } from "react";
 import { uploadRequestAction } from "../_redux/requestAddAction";
 import { RequestListAction } from "../../requestList/_redux/requestListAction";
+import { isActionOf } from "../../../../core/redux/actions";
+import {
+  uploadRequestErrorReducer,
+  uploadRequestSuccessReducer,
+} from "../_redux/requestAddReducer";
+import { NotificationManager } from "react-notifications";
 
 export const RequestAddForm = () => {
   const result = useSelector((state: RootState) => state.requestNew.result);
@@ -23,21 +29,27 @@ export const RequestAddForm = () => {
     targetLanguage: "",
     startDate: new Date(),
     finishDate: new Date(),
+    creator: "USER",
   });
+
+  // const isRequestEmpty = () => {
+  //   return Object.values(request).some((value) => !value);
+  // };
+
+  const handleUploadClick = () => {
+    dispatch(uploadRequestAction(request));
+  };
   useEffect(() => {
-    if (result && result.error === false) {
+    if (isActionOf(result.action, uploadRequestSuccessReducer)) {
+      dispatch(RequestListAction());
+      NotificationManager.success(result.messageUser, "success", 3000);
       dispatch(closeNewRequest());
     }
-  }, [result, dispatch]);
+    if (isActionOf(result.action, uploadRequestErrorReducer)) {
+      NotificationManager.error(result.messageUser, "error", 3000);
+    }
+  }, [dispatch, result]);
 
-  const isRequestEmpty = () => {
-    return Object.values(request).some((value) => !value);
-  };
-  const handleUploadClick = () => {
-    console.log(request);
-    dispatch(uploadRequestAction(request));
-    dispatch(RequestListAction());
-  };
   const isNewRequestOpen = useSelector(
     (state: RootState) => state.addformstate.isNewRequestOpen
   );
@@ -111,22 +123,22 @@ export const RequestAddForm = () => {
                       borderBottom: "1px solid #ccc",
                     },
                     "&:hover fieldset": {
-                      borderColor: "transparent", // Evita el borde en hover
+                      borderColor: "transparent",
                       borderBottom: "1px solid #ccc",
                     },
                     "&.Mui-focused fieldset": {
-                      borderColor: "transparent", // Evita el borde en foco
+                      borderColor: "transparent",
                     },
                     "& .MuiInputBase-input": {
-                      color: "#ccc", // Color del texto
-                      backgroundColor: "transparent", // Color de fondo
+                      color: "#ccc",
+                      backgroundColor: "transparent",
                     },
                   },
                   "& .MuiInputLabel-root": {
-                    color: "#ccc", // Cambia el color de la etiqueta
+                    color: "#ccc",
                   },
                   "& .MuiIconButton-root": {
-                    color: "#ccc", // Cambia el color del icono
+                    color: "#ccc",
                   },
                   " .MuiStack-root css-10o2lyd-MuiStack-root": {
                     flexDirection: "column",

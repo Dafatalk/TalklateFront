@@ -11,15 +11,24 @@ import { useEffect, useState } from "react";
 import { RequestListAction } from "../../requestList/_redux/requestListAction";
 import { closeEditForm } from "./_redux/EditFormReducer";
 import { uploadRequestEditAction } from "../_redux/requestEditAction";
+import Cookies from "js-cookie";
+import { NotificationManager } from "react-notifications";
+import { isActionOf } from "../../../../core/redux/actions";
+import {
+  uploadRequestEditErrorReducer,
+  uploadRequestEditSuccessReducer,
+} from "../_redux/requestEditReducer";
 
 export const RequestEditForm = () => {
   const result = useSelector((state: RootState) => state.editRequest.result);
+
+  const username = Cookies.get("username");
 
   const requestData = useSelector(
     (state: RootState) => state.editFormState.requestData
   );
   useEffect(() => {
-    if (requestData) {
+    if (requestData && username) {
       setRequest({
         id: requestData.id,
         description: requestData.description,
@@ -27,6 +36,7 @@ export const RequestEditForm = () => {
         targetLanguage: requestData.targetLanguage,
         startDate: requestData.startDate,
         finishDate: requestData.finishDate,
+        creator: username,
       });
     }
   }, [requestData]);
@@ -39,10 +49,10 @@ export const RequestEditForm = () => {
     targetLanguage: "",
     startDate: new Date(),
     finishDate: new Date(),
+    creator: "",
   });
   useEffect(() => {
     if (result && result.error === false) {
-      dispatch(closeEditForm());
     }
   }, [result, dispatch]);
 
@@ -62,6 +72,16 @@ export const RequestEditForm = () => {
     dispatch(closeEditForm());
   };
 
+  useEffect(() => {
+    if (isActionOf(result.action, uploadRequestEditSuccessReducer)) {
+      dispatch(RequestListAction());
+      NotificationManager.success(result.messageUser, "success", 3000);
+      dispatch(closeEditForm());
+    }
+    if (isActionOf(result.action, uploadRequestEditErrorReducer)) {
+      NotificationManager.error(result.messageUser, "error", 3000);
+    }
+  }, [dispatch, result]);
   return (
     <>
       <Box

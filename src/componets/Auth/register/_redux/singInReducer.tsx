@@ -48,7 +48,7 @@ export const singinSlice = createSlice({
         result: {
           action,
           error: true,
-          messageUser: action.payload,
+          messageUser: action.payload.response.data,
         },
       }) as SinginReducerModel,
   },

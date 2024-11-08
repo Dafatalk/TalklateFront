@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/mapStore.tsx";
 import App from "./App.tsx";
+import "react-notifications/lib/notifications.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>

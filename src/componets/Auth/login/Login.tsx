@@ -7,6 +7,12 @@ import { UserLoginModel } from "../../../core/models/UserModel";
 import { uploadLogInAction } from "./_redux/logInAction";
 import { RootState } from "../../../store/mapStore";
 import { useNavigate } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
+import { isActionOf } from "../../../core/redux/actions";
+import {
+  uploadLogInErrorReducer,
+  uploadLogInSuccessReducer,
+} from "./_redux/logInReducer";
 
 export const LogIn = () => {
   const dispatch = useDispatch();
@@ -18,16 +24,28 @@ export const LogIn = () => {
     password: "",
   });
 
+  // useEffect(() => {
+  //   if (
+  //     !result.error &&
+  //     Object.values(user).some((value) => value && result.token)
+  //   ) {
+  //     Cookies.set("token", result.token ?? "NADA", { expires: 7 });
+  //     Cookies.set("username", result.username ?? "NADA", { expires: 7 });
+  //     navigate("/request");
+  //   } else {
+  //   }
+  // }, [result]);
+
   useEffect(() => {
-    if (
-      !result.error &&
-      Object.values(user).some((value) => value && result.token)
-    ) {
-      Cookies.set("token", result.token ?? "NADA", { expires: 7 }); // Expira en 7 días
+    if (isActionOf(result.action, uploadLogInSuccessReducer)) {
+      Cookies.set("token", result.token ?? "NADA", { expires: 7 });
+      Cookies.set("username", result.username ?? "NADA", { expires: 7 });
       navigate("/request");
-    } else {
     }
-  }, [result]);
+    if (isActionOf(result.action, uploadLogInErrorReducer)) {
+      NotificationManager.error(result.messageUser, "error", 3000);
+    }
+  }, [dispatch, result]);
 
   const handleLoginClick = () => {
     dispatch(uploadLogInAction(user));

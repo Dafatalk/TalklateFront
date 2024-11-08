@@ -14,19 +14,21 @@ const RequestDeleteService = RequestService.getInstance(); //services than you d
 
 type requestDeleteAction = {
   type: string;
-  payload: {
-    id: string; //as a RequestDeleteModel
-  };
+  payload: string;
 };
 
 export function* resetrequestDeleteSaga(action: any) {
   yield put(resetResultReducer(action));
 }
 export function* uploadrequestDeleteNewSaga(action: requestDeleteAction) {
-  yield put(uploadRequestDeleteReducer(action));
+  console.log(action);
+
+  yield put(uploadRequestDeleteReducer(action.payload));
   try {
     const response: AxiosResponse<RequestModel> =
-      yield RequestDeleteService.deletRequest(action.payload.id);
+      yield RequestDeleteService.deleteRequest(action.payload);
+    console.log(response);
+
     yield put(uploadRequestDeleteSuccessReducer(response.data));
   } catch (ex) {
     yield put(uploadRequestDeleteErrorReducer(ex));

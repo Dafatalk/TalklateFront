@@ -4,22 +4,18 @@ import { ResultModel } from "../../../../core/redux/resultModel";
 export const REQUEST_DELETE_REDUCER_NAME = "requestDeleteReducer";
 
 export interface RequestDeleteReducerModel {
-  // CRAMERCASE
-  id: string; //AS A RequestDeleteMODEL
-  result: ResultModel; //AS A RESULT MODEL
+  result: ResultModel;
 }
 
-export const requestDeleteSlice = createSlice({
+const requestDeleteSlice = createSlice({
   name: REQUEST_DELETE_REDUCER_NAME,
   initialState: {
-    id: "",
     result: {},
   } as RequestDeleteReducerModel,
   reducers: {
     resetResultReducer: (state, action) =>
       ({
         ...state,
-        id: "",
         result: {
           action,
           error: false,
@@ -54,7 +50,6 @@ export const requestDeleteSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const {
   resetResultReducer,
   uploadRequestDeleteErrorReducer,

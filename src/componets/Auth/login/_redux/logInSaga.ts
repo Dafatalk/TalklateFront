@@ -28,8 +28,7 @@ export function* uploadlogInNewSaga(action: logInAction) {
     const response: AxiosResponse<{ token: string }> = yield LogInService.login(
       action.payload.user
     );
-
-    yield put(uploadLogInSuccessReducer(response.data.token));
+    yield put(uploadLogInSuccessReducer(response.data));
   } catch (ex) {
     yield put(uploadLogInErrorReducer(ex));
     console.log("ERROR: " + ex);

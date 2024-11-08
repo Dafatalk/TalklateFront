@@ -29,11 +29,19 @@ export const Request = () => {
           requestList.map((request) => (
             <Box key={request.id}>
               <Card className="data-card">
-                <Box sx={{ justifyContent: "flex-end", display: "flex" }}>
+                <RequestList request={request} />
+                <Box
+                  sx={{
+                    justifyContent: "flex-end",
+                    display: "flex",
+                    position: "relative",
+                    top: "70px",
+                    left: "30px",
+                  }}
+                >
                   <RequestEdit request={request}></RequestEdit>
                   <RequestDelete id={request.id}></RequestDelete>
                 </Box>
-                <RequestList request={request} />
               </Card>
             </Box>
           ))

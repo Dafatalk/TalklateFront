@@ -25,4 +25,6 @@ export interface ResultModel {
   token?: string;
 
   list?: Array<any>;
+
+  username?: string;
 }

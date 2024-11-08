@@ -48,7 +48,7 @@ export const requestEditSlice = createSlice({
         result: {
           action,
           error: true,
-          messageUser: action.payload.response.data.message,
+          messageUser: action.payload.response.data,
         },
       }) as RequestEditReducerModel,
   },

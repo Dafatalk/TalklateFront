@@ -1,8 +1,9 @@
 export interface RequestModel {
   id: string;
   description: string;
-  originLanguage: String;
-  targetLanguage: String;
+  originLanguage: string;
+  targetLanguage: string;
   startDate: Date;
   finishDate: Date;
+  creator: string;
 }

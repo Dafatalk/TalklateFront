@@ -50,10 +50,10 @@ export class RequestService {
     }
   }
 
-  public deletRequest(id: string): Promise<AxiosResponse<RequestModel>> {
+  public deleteRequest(id: string): Promise<AxiosResponse<any>> {
     try {
       const token = Cookies.get("token");
-
+      console.log(id);
       return axios.delete<RequestModel>(`${this.deletRequestEndPoint}/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,

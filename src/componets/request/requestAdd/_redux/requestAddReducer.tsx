@@ -24,7 +24,7 @@ export const requestAddSlice = createSlice({
           action,
           error: false,
         },
-      } as NewRequestReducerModel),
+      }) as NewRequestReducerModel,
     uploadRequestReducer: (state, action) =>
       ({
         ...state,
@@ -32,7 +32,7 @@ export const requestAddSlice = createSlice({
           action,
           error: false,
         },
-      } as NewRequestReducerModel),
+      }) as NewRequestReducerModel,
     uploadRequestSuccessReducer: (state, action) =>
       ({
         ...state,
@@ -41,20 +41,19 @@ export const requestAddSlice = createSlice({
           error: false,
           messageUser: "The request was uploaded succesfully",
         },
-      } as NewRequestReducerModel),
+      }) as NewRequestReducerModel,
     uploadRequestErrorReducer: (state, action) =>
       ({
         ...state,
         result: {
           action,
           error: true,
-          messageUser: action.payload.response.data.message,
+          messageUser: action.payload.response.data,
         },
-      } as NewRequestReducerModel),
+      }) as NewRequestReducerModel,
   },
 });
 
-// Action creators are generated for each case reducer function
 export const {
   resetResultReducer,
   uploadRequestErrorReducer,

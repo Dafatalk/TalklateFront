@@ -40,7 +40,8 @@ export const logInSlice = createSlice({
           action,
           error: false,
           messageUser: "The logIn was uploaded succesfully",
-          token: action.payload,
+          username: action.payload.username,
+          token: action.payload.token,
         },
       }) as LogInReducerModel,
     uploadLogInErrorReducer: (state, action) =>
@@ -49,7 +50,7 @@ export const logInSlice = createSlice({
         result: {
           action,
           error: true,
-          messageUser: action.payload.response.data.message,
+          messageUser: action.payload.response.data,
         },
       }) as LogInReducerModel,
   },

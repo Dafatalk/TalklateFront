@@ -11,6 +11,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Box, Button } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
+import { isActionOf } from "../../../core/redux/actions";
+import {
+  uploadsinginErrorReducer,
+  uploadsinginSuccessReducer,
+} from "./_redux/singInReducer";
+import { NotificationManager } from "react-notifications";
 
 export const Singin = () => {
   const minDate = dayjs().year(2014);
@@ -27,7 +33,7 @@ export const Singin = () => {
     documentNumber: "",
     phoneNumber: "",
     birthDate: new Date(),
-    role: "ADMIN",
+    role: "USER",
   });
 
   const isRegisterOpen = useSelector(
@@ -49,11 +55,28 @@ export const Singin = () => {
   const isUserEmpty = () => {
     return Object.values(user).some((value) => !value);
   };
+
   useEffect(() => {
-    if (result && result.error === false) {
+    if (isActionOf(result.action, uploadsinginSuccessReducer)) {
+      NotificationManager.success(result.messageUser, "success", 3000);
       dispatch(closeRegister());
+      setUser({
+        name: "",
+        lastName: "",
+        email: "",
+        username: "",
+        password: "",
+        documentType: "",
+        documentNumber: "",
+        phoneNumber: "",
+        birthDate: new Date(),
+        role: "USER",
+      });
     }
-  }, [result, dispatch]);
+    if (isActionOf(result.action, uploadsinginErrorReducer)) {
+      NotificationManager.error(result.messageUser, "error", 3000);
+    }
+  }, [dispatch, result]);
 
   return (
     <>
@@ -74,6 +97,7 @@ export const Singin = () => {
                 className="inpute"
                 type="text"
                 placeholder=" "
+                value={user.name}
                 onChange={(event) =>
                   setUser({
                     ...user,
@@ -88,6 +112,7 @@ export const Singin = () => {
               <input
                 className="inpute"
                 type="text"
+                value={user.lastName}
                 placeholder=" "
                 onChange={(event) =>
                   setUser({
@@ -103,6 +128,7 @@ export const Singin = () => {
               <input
                 className="inpute"
                 type="text"
+                value={user.email}
                 placeholder=" "
                 onChange={(event) =>
                   setUser({
@@ -118,6 +144,7 @@ export const Singin = () => {
               <input
                 className="inpute"
                 type="text"
+                value={user.username}
                 placeholder=" "
                 onChange={(event) =>
                   setUser({
@@ -133,6 +160,7 @@ export const Singin = () => {
               <input
                 className="inpute"
                 placeholder=" "
+                value={user.documentType}
                 onChange={(event) =>
                   setUser({
                     ...user,
@@ -149,6 +177,7 @@ export const Singin = () => {
                 className="inpute"
                 type="text"
                 placeholder=" "
+                value={user.documentNumber}
                 onChange={(event) =>
                   setUser({
                     ...user,
@@ -164,6 +193,7 @@ export const Singin = () => {
                 className="inpute"
                 type="text"
                 placeholder=" "
+                value={user.phoneNumber}
                 onChange={(event) =>
                   setUser({
                     ...user,
