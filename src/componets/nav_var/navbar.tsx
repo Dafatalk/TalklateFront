@@ -12,12 +12,15 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../../assets/logo.png"; // Sube dos niveles para acceder a assets
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const pages = ["Request"];
 const settings = ["Logout"];
 
 function ResponsiveAppBar() {
+  const navigate = useNavigate(); // Usa useNavigate para manejar la navegación
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -38,6 +41,9 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+    Cookies.remove("username");
+    Cookies.remove("token");
+    navigate("/");
   };
 
   return (

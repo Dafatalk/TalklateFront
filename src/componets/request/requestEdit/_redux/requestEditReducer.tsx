@@ -39,7 +39,7 @@ export const requestEditSlice = createSlice({
         result: {
           action,
           error: false,
-          messageUser: "The requestEdit was uploaded succesfully",
+          messageUser: "The request was edited succesfully",
         },
       }) as RequestEditReducerModel,
     uploadRequestEditErrorReducer: (state, action) =>

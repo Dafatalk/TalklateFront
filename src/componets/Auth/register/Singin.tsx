@@ -9,7 +9,14 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Box, Button } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { isActionOf } from "../../../core/redux/actions";
 import {
@@ -156,22 +163,50 @@ export const Singin = () => {
               <span>username</span>
               <span></span>
             </Box>
-            <Box className="input-box">
-              <input
-                className="inpute"
-                placeholder=" "
+            <FormControl
+              variant="standard"
+              sx={{
+                m: 1,
+                minWidth: 120,
+                "& .MuiInputLabel-root": { color: "#ccc" }, // Color del label
+                "& .MuiInputBase-root:before": { borderBottomColor: "#ccc" }, // Línea inferior del input
+                "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
+                  borderBottomColor: "#ccc",
+                }, // Línea inferior cuando se pasa el mouse
+                "& .MuiSelect-root": { color: "#ccc " },
+                "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
+                  { borderBottom: "2px solid #fff" },
+                "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
+                  { marginTop: "16px", color: "white" },
+                "& .MuiSelect-icon": { display: "none" }, // Oculta la flecha del select
+              }}
+            >
+              <InputLabel
+                sx={{ fontSize: "0.9em" }}
+                id="demo-simple-select-standard-label"
+              >
+                Dcoument Type
+              </InputLabel>
+              <Select
+                id="demo-simple-select-standard"
                 value={user.documentType}
+                label="Origin Language"
                 onChange={(event) =>
                   setUser({
                     ...user,
                     documentType: event.target.value,
                   })
                 }
-              />
-
-              <span>Document Type</span>
-              <span></span>
-            </Box>
+              >
+                <MenuItem value="">
+                  <em>N/A</em>
+                </MenuItem>
+                <MenuItem value={"English"}>CC</MenuItem>
+                <MenuItem value={"Spanish"}>CE</MenuItem>
+                <MenuItem value={"French"}>TI</MenuItem>
+                <MenuItem value={"German"}>PE</MenuItem>
+              </Select>
+            </FormControl>
             <Box className="input-box">
               <input
                 className="inpute"

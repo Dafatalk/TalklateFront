@@ -1,4 +1,12 @@
-import { Box, Button, TextareaAutosize } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextareaAutosize,
+} from "@mui/material";
 import "./RequestAddForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/mapStore";
@@ -46,6 +54,15 @@ export const RequestAddForm = () => {
       dispatch(RequestListAction());
       NotificationManager.success(result.messageUser, "success", 3000);
       dispatch(closeNewRequest());
+      setRequest({
+        id: " ",
+        description: "",
+        originLanguage: "",
+        targetLanguage: "",
+        startDate: new Date(),
+        finishDate: new Date(),
+        creator: cookiesUsername,
+      });
     }
     if (isActionOf(result.action, uploadRequestErrorReducer)) {
       NotificationManager.error(result.messageUser, "error", 3000);
@@ -73,39 +90,97 @@ export const RequestAddForm = () => {
         </Box>
         <Box className="content">
           <Box className="columns">
-            <Box className="input-box">
-              <input
-                className="inpute"
-                type="text"
-                placeholder=" "
+            <FormControl
+              variant="standard"
+              sx={{
+                m: 1,
+                minWidth: 120,
+                "& .MuiInputLabel-root": { color: "#ccc" }, // Color del label
+                "& .MuiInputBase-root:before": { borderBottomColor: "#ccc" }, // Línea inferior del input
+                "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
+                  borderBottomColor: "#ccc",
+                }, // Línea inferior cuando se pasa el mouse
+                "& .MuiSelect-root": { color: "#ccc " },
+                "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
+                  { borderBottom: "2px solid #fff" },
+                "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
+                  { marginTop: "16px", color: "white" },
+                "& .MuiSelect-icon": { display: "none" }, // Oculta la flecha del select
+              }}
+            >
+              <InputLabel
+                sx={{ fontSize: "0.9em" }}
+                id="demo-simple-select-standard-label"
+              >
+                Origin Language
+              </InputLabel>
+              <Select
+                id="demo-simple-select-standard"
+                value={request.originLanguage}
+                label="Origin Language"
                 onChange={(event) =>
                   setRequest({
                     ...request,
                     originLanguage: event.target.value,
                   })
                 }
-              />
-              <span>Origin Lenguaje</span>
-              <span></span>
-            </Box>
-            <Box className="input-box">
-              <input
-                className="inpute"
-                type="text"
-                placeholder=" "
+              >
+                <MenuItem value="">
+                  <em>N/A</em>
+                </MenuItem>
+                <MenuItem value={"English"}>English</MenuItem>
+                <MenuItem value={"Spanish"}>Spanish</MenuItem>
+                <MenuItem value={"French"}>French</MenuItem>
+                <MenuItem value={"German"}>German</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl
+              variant="standard"
+              sx={{
+                m: 1,
+                minWidth: 120,
+                "& .MuiInputLabel-root": { color: "#ccc" }, // Color del label
+                "& .MuiInputBase-root:before": { borderBottomColor: "#ccc" }, // Línea inferior del input
+                "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
+                  borderBottomColor: "#ccc",
+                }, // Línea inferior cuando se pasa el mouse
+                "& .MuiSelect-root": { color: "#ccc " },
+                "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
+                  { borderBottom: "2px solid #fff" },
+                "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
+                  { marginTop: "16px", color: "white" },
+                "& .MuiSelect-icon": { display: "none" }, // Oculta la flecha del select
+              }}
+            >
+              <InputLabel
+                sx={{ fontSize: "0.9em" }}
+                id="demo-simple-select-standard-label"
+              >
+                Target Language
+              </InputLabel>
+              <Select
+                id="demo-simple-select-standard"
+                value={request.targetLanguage}
+                label="Origin Language"
                 onChange={(event) =>
                   setRequest({
                     ...request,
                     targetLanguage: event.target.value,
                   })
                 }
-              />
-              <span>Target Lenguaje</span>
-              <span></span>
-            </Box>
+              >
+                <MenuItem value="">
+                  <em>N/A</em>
+                </MenuItem>
+                <MenuItem value={"English"}>English</MenuItem>
+                <MenuItem value={"Spanish"}>Spanish</MenuItem>
+                <MenuItem value={"French"}>French</MenuItem>
+                <MenuItem value={"German"}>German</MenuItem>
+              </Select>
+            </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="StartDate"
+                label="Start Date"
                 minDate={dayjs(Today)}
                 onChange={(newValue: Dayjs | null) => {
                   if (newValue) {
@@ -150,7 +225,7 @@ export const RequestAddForm = () => {
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="EndDate"
+                label="End Date"
                 onChange={(newValue: Dayjs | null) => {
                   if (newValue) {
                     setRequest({

@@ -10,7 +10,7 @@ import { RequestDeleteActionType } from "./requestDeleteAction";
 import { RequestService } from "../../../../core/service/RequestService";
 import { RequestModel } from "../../../../core/models/RequestModel";
 
-const RequestDeleteService = RequestService.getInstance(); //services than you did
+const RequestDeleteService = RequestService.getInstance();
 
 type requestDeleteAction = {
   type: string;
@@ -36,7 +36,6 @@ export function* uploadrequestDeleteNewSaga(action: requestDeleteAction) {
   }
 }
 
-//REMEBER TO PUT THE WACHER IN THE STORE AND THE SLICER/REDUCER
 export function* watchrequestDeleteAsync() {
   yield all([
     takeEvery(RequestDeleteActionType.RESET_ACTION, resetrequestDeleteSaga),

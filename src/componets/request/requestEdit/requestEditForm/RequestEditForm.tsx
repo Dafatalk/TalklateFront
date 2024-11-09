@@ -1,4 +1,12 @@
-import { Box, Button, TextareaAutosize } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextareaAutosize,
+} from "@mui/material";
 import "./RequestEditForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/mapStore";
@@ -95,38 +103,89 @@ export const RequestEditForm = () => {
         </Box>
         <Box className="content">
           <Box className="columns">
-            <Box className="input-box">
-              <input
-                className="inpute"
-                type="text"
-                placeholder=" "
-                value={request.originLanguage.toString()}
+            <FormControl
+              variant="standard"
+              sx={{
+                m: 1,
+                minWidth: 120,
+                "& .MuiInputLabel-root": { color: "#ccc" },
+                "& .MuiInputBase-root:before": { borderBottomColor: "#ccc" },
+                "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
+                  borderBottomColor: "#ccc",
+                },
+                "& .MuiSelect-root": { color: "#ccc " },
+                "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
+                  { borderBottom: "2px solid #fff" },
+                "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
+                  { marginTop: "16px", color: "white" },
+                "& .MuiSelect-icon": { display: "none" }, // Oculta la flecha del select
+              }}
+            >
+              <InputLabel id="demo-simple-select-standard-label">
+                Origin Language
+              </InputLabel>
+              <Select
+                id="demo-simple-select-standard"
+                value={request.originLanguage}
+                label="Origin Language"
                 onChange={(event) =>
                   setRequest({
                     ...request,
                     originLanguage: event.target.value,
                   })
                 }
-              />
-              <span>Origin Lenguaje</span>
-              <span></span>
-            </Box>
-            <Box className="input-box">
-              <input
-                className="inpute"
-                type="text"
-                placeholder=" "
-                value={request.targetLanguage.toString()}
+              >
+                <MenuItem value="">
+                  <em>N/A</em>
+                </MenuItem>
+                <MenuItem value={"English"}>English</MenuItem>
+                <MenuItem value={"Spanish"}>Spanish</MenuItem>
+                <MenuItem value={"French"}>French</MenuItem>
+                <MenuItem value={"German"}>German</MenuItem>
+              </Select>
+            </FormControl>
+
+            <FormControl
+              variant="standard"
+              sx={{
+                m: 1,
+                minWidth: 120,
+                "& .MuiInputLabel-root": { color: "#ccc" },
+                "& .MuiInputBase-root:before": { borderBottomColor: "#ccc" },
+                "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
+                  borderBottomColor: "#ccc",
+                },
+                "& .MuiSelect-root": { color: "#ccc " },
+                "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
+                  { borderBottom: "2px solid #fff" },
+                "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
+                  { marginTop: "16px", color: "white" },
+                "& .MuiSelect-icon": { display: "none" }, // Oculta la flecha del select
+              }}
+            >
+              <InputLabel id="demo-simple-select-standard-label">
+                Target Language
+              </InputLabel>
+              <Select
+                id="demo-simple-select-standard"
+                value={request.targetLanguage}
+                label="Origin Language"
                 onChange={(event) =>
                   setRequest({
                     ...request,
                     targetLanguage: event.target.value,
                   })
                 }
-              />
-              <span>Target Lenguaje</span>
-              <span></span>
-            </Box>
+              >
+                <MenuItem value="">
+                  <em>N/A</em>
+                </MenuItem>
+                <MenuItem value={"English"}>English</MenuItem>
+                <MenuItem value={"Spanish"}>Spanish</MenuItem>
+                <MenuItem value={"French"}>French</MenuItem>
+                <MenuItem value={"German"}>German</MenuItem>
+              </Select>
+            </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="StartDate"

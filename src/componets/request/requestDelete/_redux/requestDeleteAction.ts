@@ -12,10 +12,11 @@ const requestDeleteActions = {
     type: RequestDeleteActionType.UPLOAD_REQUEST_DELETE_ACTION,
     payload: id,
   }),
-  resetAction: () => ({
+  resetDeleteAction: () => ({
     type: RequestDeleteActionType.RESET_ACTION,
     payload: null,
   }),
 };
 
-export const { uploadRequestDeleteAction, resetAction } = requestDeleteActions;
+export const { uploadRequestDeleteAction, resetDeleteAction } =
+  requestDeleteActions;

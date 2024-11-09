@@ -34,8 +34,6 @@ export class UserService {
 
       return axios.post<{ token: string }>(this.loginEndPoint, user);
     } catch (error) {
-      console.log("ENTRO POR ACAAAA");
-      console.error("ESTO ES LO QUE PASA:" + error);
       throw error;
     }
   }

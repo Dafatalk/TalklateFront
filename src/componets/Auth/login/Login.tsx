@@ -24,18 +24,6 @@ export const LogIn = () => {
     password: "",
   });
 
-  // useEffect(() => {
-  //   if (
-  //     !result.error &&
-  //     Object.values(user).some((value) => value && result.token)
-  //   ) {
-  //     Cookies.set("token", result.token ?? "NADA", { expires: 7 });
-  //     Cookies.set("username", result.username ?? "NADA", { expires: 7 });
-  //     navigate("/request");
-  //   } else {
-  //   }
-  // }, [result]);
-
   useEffect(() => {
     if (isActionOf(result.action, uploadLogInSuccessReducer)) {
       Cookies.set("token", result.token ?? "NADA", { expires: 7 });
