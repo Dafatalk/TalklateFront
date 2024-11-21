@@ -19,6 +19,8 @@ import {
   uploadRequestDeleteErrorReducer,
 } from "./requestDelete/_redux/requestDeleteReducer";
 import { NotificationManager } from "react-notifications";
+import { RequestModel } from "../../core/models/RequestModel";
+import { uploadRequestEditAction } from "./requestEdit/_redux/requestEditAction";
 
 export const Request = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,14 @@ export const Request = () => {
   const handleDeleteClick = (id: string) => {
     dispatch(uploadRequestDeleteAction(id));
   };
+  const handleUploadClick = (request: RequestModel) => {
+    const updatedRequest: RequestModel = {
+      ...request,
+      translator: cookiesUsername ?? null,
+    };
+    dispatch(uploadRequestEditAction(updatedRequest));
+  };
+
   useEffect(() => {
     dispatch(RequestListAction());
   }, [dispatch, RequestAddForm]);
@@ -78,7 +88,15 @@ export const Request = () => {
                       </IconButton>
                     </>
                   ) : (
-                    <h4> Creator: {request.creator}</h4>
+                    <>
+                      {request.translator == null ? (
+                        <Button onClick={() => handleUploadClick(request)}>
+                          take the job
+                        </Button>
+                      ) : (
+                        <h4>the job was taken by {request.translator}</h4>
+                      )}
+                    </>
                   )}
                 </Box>
               </Card>

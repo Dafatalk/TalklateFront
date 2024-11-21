@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     "/", // ruta que deseas interceptar
     createProxyMiddleware({
-      target: "http://localhost:8005",
+      target: "http://192.168.20.2:8005",
       changeOrigin: true,
     })
   );

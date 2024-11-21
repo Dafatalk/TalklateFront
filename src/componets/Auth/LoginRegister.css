@@ -58,8 +58,8 @@ body {
   padding: 10px;
 }
 .login-container .login-box .content .input-box {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 12px;
   text-align: center;
   display: inline-block;
   width: 100%;
@@ -69,7 +69,6 @@ body {
   width: 100%;
   border: none;
   border-bottom: 1px solid #ccc;
-  height: 40px;
   line-height: 40px;
   font-size: 0.9em;
   outline: none;
@@ -148,7 +147,10 @@ body {
   background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
   color: #ffff;
 }
-
+.login-container .login-box .content .input-box button:focus {
+  background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
+  color: #ffff;
+}
 .login-container .login-box .content .input-box .buttone:hover {
   background-image: linear-gradient(to top, #74908e, #97bdbb, #b1c9c8);
   color: #ffff;
@@ -237,4 +239,69 @@ body {
   top: 43px;
   opacity: 1;
   transition: all 0.3s 0.3s linear;
+}
+/* DE LOS INPUTS */
+/* Contenedor general del TextField */
+.textfield-container {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  height: 40px;
+  line-height: 40px;
+  font-size: 0.9em;
+  outline: none;
+  background: transparent;
+  transition: color 0.3s ease-in-out; /* Animación para el cambio de color */
+}
+
+/* Estilo del label */
+.textfield-container .MuiInputLabel-root {
+  color: #ccc; /* Color del label */
+  transition: color 0.3s ease-in-out; /* Animación para el cambio de color */
+}
+/* Estilo del label */
+.textfield-container .MuiInputLabel-root.Mui-focused {
+  color: #d5d3d3; /* Color del label */
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease; /* Animación del movimiento */
+}
+
+/* Línea inferior por defecto */
+.textfield-container .MuiInputBase-root::before {
+  border-bottom: 1px solid #ccc; /* Línea inferior */
+}
+
+/* Línea inferior cuando el TextField está en hover */
+.textfield-container .MuiInputBase-root:hover:not(.Mui-disabled)::before {
+  border-bottom-color: #ccc; /* Línea inferior cuando se pasa el mouse */
+}
+
+/* Línea inferior cuando el TextField está enfocado */
+.textfield-container .MuiInputBase-root::after {
+  border-bottom: 2px solid #fff; /* Línea inferior blanca al enfocar */
+  transition: border-bottom 0.3s ease-in-out; /* Animación de la transición */
+}
+
+/* Ocultar ícono del select (si aplica) */
+.textfield-container .MuiSelect-icon {
+  display: none; /* Oculta la flecha del select */
+}
+
+/* Espaciado adicional en el label cuando está asociado a un select */
+.textfield-container
+  label
+  + .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root {
+  margin-top: 16px;
+  color: white;
+}
+
+/* Estilo del contenido del TextField */
+.textfield-container .MuiInputBase-root {
+  color: #ccc; /* Color del texto del input */
+}
+
+/* Hover en el label */
+.textfield-container .MuiInputLabel-root:hover {
+  color: #fff; /* Cambia el color del label al pasar el mouse */
 }

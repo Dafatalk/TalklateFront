@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { UserModel, UserLoginModel } from "../models/UserModel";
 
 export class UserService {
-  private PAHT_URI = "http://localhost:8005/auth";
+  private PAHT_URI = "http://192.168.20.2:8005/auth";
 
   private static _instance: UserService;
 

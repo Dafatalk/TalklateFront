@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 
 export class RequestService {
-  private PAHT_URI = "http://localhost:8005/api/v1/request";
+  private PAHT_URI = "http://192.168.20.2:8005/api/v1/request";
 
   private static _instance: RequestService;
 

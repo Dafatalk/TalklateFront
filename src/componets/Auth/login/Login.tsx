@@ -1,5 +1,5 @@
 import "../LoginRegister.css";
-import { Box } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -31,7 +31,7 @@ export const LogIn = () => {
       navigate("/request");
     }
     if (isActionOf(result.action, uploadLogInErrorReducer)) {
-      NotificationManager.error(result.messageUser, "error", 3000);
+      NotificationManager.error(result.messageUser, "Error", 3000);
     }
   }, [dispatch, result]);
 
@@ -45,8 +45,10 @@ export const LogIn = () => {
       </Box>
       <Box className="content">
         <Box className="input-box">
-          <input
-            className="inpute"
+          <TextField
+            label="Username"
+            variant="standard"
+            className="textfield-container"
             type="text"
             placeholder=" "
             onChange={(event) =>
@@ -56,12 +58,14 @@ export const LogIn = () => {
               })
             }
           />
-          <span>username</span>
+          <span></span>
           <span></span>
         </Box>
         <Box className="input-box">
-          <input
-            className="inpute"
+          <TextField
+            label="Password"
+            variant="standard"
+            className="textfield-container"
             type="password"
             placeholder=" "
             onChange={(event) =>
@@ -71,12 +75,12 @@ export const LogIn = () => {
               })
             }
           />
-          <span>password</span>
+          <span></span>
           <span></span>
         </Box>
         <Box className="input-box">
           <button onClick={handleLoginClick} className="buttone">
-            SING IN
+            SIGN IN
           </button>
           <Box>
             <a>Forgot your password?</a>

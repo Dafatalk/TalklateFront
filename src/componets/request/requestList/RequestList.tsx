@@ -6,7 +6,7 @@ interface RequestDataProps {
 }
 
 export const RequestList = ({ request }: RequestDataProps) => {
-  console.log(request.creator);
+  console.log(request.translator);
 
   return (
     <>
@@ -18,8 +18,13 @@ export const RequestList = ({ request }: RequestDataProps) => {
           </h3>
           <p>{request.description}</p>
           <span className="link-text">
-            {new Date(request.startDate).toLocaleDateString()} to{" "}
-            {new Date(request.finishDate).toLocaleDateString()}
+            {request.startDate
+              ? new Date(request.startDate).toLocaleDateString()
+              : "Invalid start date"}{" "}
+            to{" "}
+            {request.finishDate
+              ? new Date(request.finishDate).toLocaleDateString()
+              : "Invalid finish date"}
           </span>
         </div>
       ) : (

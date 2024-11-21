@@ -45,6 +45,7 @@ export const RequestEditForm = () => {
         startDate: requestData.startDate,
         finishDate: requestData.finishDate,
         creator: username,
+        translator: requestData.translator,
       });
     }
   }, [requestData]);
@@ -58,6 +59,7 @@ export const RequestEditForm = () => {
     startDate: new Date(),
     finishDate: new Date(),
     creator: "",
+    translator: "",
   });
   useEffect(() => {
     if (result && result.error === false) {

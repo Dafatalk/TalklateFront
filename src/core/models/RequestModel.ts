@@ -3,7 +3,8 @@ export interface RequestModel {
   description: string;
   originLanguage: string;
   targetLanguage: string;
-  startDate: Date;
-  finishDate: Date;
+  startDate: Date | null;
+  finishDate: Date | null;
   creator: string;
+  translator: string | null;
 }

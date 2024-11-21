@@ -44,9 +44,9 @@
     border 0.45s ease;
 }
 .data-card h4 {
-  color: #627084;
+  color: #000000;
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.1em;
@@ -105,6 +105,14 @@
   -webkit-animation: point 1.25s infinite alternate;
   animation: point 1.25s infinite alternate;
 }
+.data-card:hover Button {
+  color: #ffffff;
+}
+
+.data-card:hover Button:hover {
+  background-color: #56a1a8;
+}
+
 .data-card:hover .link-text svg path {
   fill: #ffffff;
 }

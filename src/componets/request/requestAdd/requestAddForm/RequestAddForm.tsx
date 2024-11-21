@@ -37,17 +37,23 @@ export const RequestAddForm = () => {
     description: "",
     originLanguage: "",
     targetLanguage: "",
-    startDate: new Date(),
-    finishDate: new Date(),
+    startDate: null,
+    finishDate: null,
     creator: cookiesUsername,
+    translator: "",
   });
 
-  const isRequestEmpty = () => {
-    return Object.values(request).some((value) => !value);
-  };
-
   const handleUploadClick = () => {
-    dispatch(uploadRequestAction(request));
+    console.log(request);
+    if (request.description.trim() == "") {
+      NotificationManager.error("Enter a description", "Error", 3000);
+    } else if (request.originLanguage == "") {
+      NotificationManager.error("Enter a Origin Languaje", "Error", 3000);
+    } else if (request.targetLanguage == "") {
+      NotificationManager.error("Enter a Target Languaje", "Error", 3000);
+    } else {
+      dispatch(uploadRequestAction(request));
+    }
   };
   useEffect(() => {
     if (isActionOf(result.action, uploadRequestSuccessReducer)) {
@@ -59,13 +65,26 @@ export const RequestAddForm = () => {
         description: "",
         originLanguage: "",
         targetLanguage: "",
-        startDate: new Date(),
-        finishDate: new Date(),
+        startDate: null,
+        finishDate: null,
         creator: cookiesUsername,
+        translator: "",
       });
     }
     if (isActionOf(result.action, uploadRequestErrorReducer)) {
-      NotificationManager.error(result.messageUser, "error", 3000);
+      if (
+        !(request.startDate instanceof Date) ||
+        isNaN(request.startDate.getTime())
+      ) {
+        NotificationManager.error("Start Date is invalid", "Error", 3000);
+      } else if (
+        !(request.finishDate instanceof Date) ||
+        isNaN(request.finishDate.getTime())
+      ) {
+        NotificationManager.error("End Date is invalid", "Error", 3000);
+      } else {
+        NotificationManager.error(result.messageUser, "Error", 3000);
+      }
     }
   }, [dispatch, result]);
 
@@ -125,9 +144,6 @@ export const RequestAddForm = () => {
                   })
                 }
               >
-                <MenuItem value="">
-                  <em>N/A</em>
-                </MenuItem>
                 <MenuItem value={"English"}>English</MenuItem>
                 <MenuItem value={"Spanish"}>Spanish</MenuItem>
                 <MenuItem value={"French"}>French</MenuItem>
@@ -169,9 +185,6 @@ export const RequestAddForm = () => {
                   })
                 }
               >
-                <MenuItem value="">
-                  <em>N/A</em>
-                </MenuItem>
                 <MenuItem value={"English"}>English</MenuItem>
                 <MenuItem value={"Spanish"}>Spanish</MenuItem>
                 <MenuItem value={"French"}>French</MenuItem>
@@ -193,7 +206,7 @@ export const RequestAddForm = () => {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: 0,
-                    width: "100%",
+                    width: "109%",
                     font: "verdana, sans-serif",
                     "& fieldset": {
                       borderColor: "transparent",
@@ -226,6 +239,7 @@ export const RequestAddForm = () => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="End Date"
+                minDate={dayjs(request.startDate)}
                 onChange={(newValue: Dayjs | null) => {
                   if (newValue) {
                     setRequest({
@@ -237,7 +251,7 @@ export const RequestAddForm = () => {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: 0,
-                    width: "100%",
+                    width: "109%",
                     font: "verdana, sans-serif",
                     "& fieldset": {
                       borderColor: "transparent",
@@ -286,9 +300,7 @@ export const RequestAddForm = () => {
             <span></span>
           </Box>
           <Box className="input-box">
-            <Button disabled={isRequestEmpty()} onClick={handleUploadClick}>
-              UPLOAD
-            </Button>
+            <Button onClick={handleUploadClick}>UPLOAD</Button>
           </Box>
         </Box>
       </Box>
