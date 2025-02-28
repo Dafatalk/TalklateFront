@@ -11,7 +11,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       thunk: false,
       serializableCheck: false,
-      target: "http://192.168.20.2:8005",
+      target: "http://localhost:8005",
     }).concat(sagaMiddleware),
 });
 
