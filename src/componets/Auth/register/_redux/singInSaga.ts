@@ -23,14 +23,12 @@ export function* resetSinginSaga(action: any) {
   yield put(resetResultReducer(action));
 }
 export function* uploadSinginNewSaga(action: SinginAction) {
-  console.log("SIIIII ENTROOO" + action.payload.singIn);
   yield put(uploadsinginReducer(action.payload.singIn));
   try {
     const response: AxiosResponse<UserModel> = yield singinService.register(
       action.payload.singIn
     );
     yield put(uploadsinginSuccessReducer(response.data));
-    console.log("RESPUESTA: buena " + response.data);
   } catch (ex) {
     yield put(uploadsinginErrorReducer(ex));
     console.log("ERROR:" + ex);

@@ -2,11 +2,11 @@ import axios, { AxiosResponse } from "axios";
 import { UserModel, UserLoginModel } from "../models/UserModel";
 
 export class UserService {
-  private PAHT_URI = "http://192.168.20.2:8005/auth";
+  private PAHT_URI = "http://127.0.0.1:8005/auth";
 
   private static _instance: UserService;
 
-  private constructor() {}
+  private constructor() { }
   public static getInstance() {
     if (!UserService._instance) {
       UserService._instance = new UserService();
