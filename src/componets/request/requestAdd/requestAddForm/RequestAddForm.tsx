@@ -58,7 +58,7 @@ export const RequestAddForm = () => {
   useEffect(() => {
     if (isActionOf(result.action, uploadRequestSuccessReducer)) {
       dispatch(RequestListAction());
-      NotificationManager.success(result.messageUser, "success", 3000);
+      NotificationManager.success(result.messageUser, "Success", 3000);
       dispatch(closeNewRequest());
       setRequest({
         id: " ",
@@ -98,6 +98,9 @@ export const RequestAddForm = () => {
 
   return (
     <>
+      {isNewRequestOpen && (
+        <div className="overlay" onClick={handleCloseClick}></div>
+      )}
       <Box
         className={`box register-box ${isNewRequestOpen ? "open" : "opent"}`}
       >
@@ -119,7 +122,8 @@ export const RequestAddForm = () => {
                 "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
                   borderBottomColor: "#ccc",
                 }, // Línea inferior cuando se pasa el mouse
-                "& .MuiSelect-root": { color: "#ccc " },
+                "& .MuiSelect-root": { color: "#000 " },
+                "& .MuiInputBase-input": { color: "#000" },
                 "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
                   { borderBottom: "2px solid #fff" },
                 "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
@@ -131,7 +135,7 @@ export const RequestAddForm = () => {
                 sx={{ fontSize: "0.9em" }}
                 id="demo-simple-select-standard-label"
               >
-                Origin Language
+                Origin Language *
               </InputLabel>
               <Select
                 id="demo-simple-select-standard"
@@ -160,7 +164,8 @@ export const RequestAddForm = () => {
                 "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
                   borderBottomColor: "#ccc",
                 }, // Línea inferior cuando se pasa el mouse
-                "& .MuiSelect-root": { color: "#ccc " },
+                "& .MuiSelect-root": { color: "#000 " },
+                "& .MuiInputBase-input": { color: "#000" },
                 "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
                   { borderBottom: "2px solid #fff" },
                 "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
@@ -172,7 +177,7 @@ export const RequestAddForm = () => {
                 sx={{ fontSize: "0.9em" }}
                 id="demo-simple-select-standard-label"
               >
-                Target Language
+                Target Language *
               </InputLabel>
               <Select
                 id="demo-simple-select-standard"
@@ -193,7 +198,8 @@ export const RequestAddForm = () => {
             </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="Start Date"
+                label="Start Date *"
+                
                 minDate={dayjs(Today)}
                 onChange={(newValue: Dayjs | null) => {
                   if (newValue) {
@@ -206,7 +212,7 @@ export const RequestAddForm = () => {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: 0,
-                    width: "109%",
+                    width: "100%",
                     font: "verdana, sans-serif",
                     "& fieldset": {
                       borderColor: "transparent",
@@ -220,7 +226,7 @@ export const RequestAddForm = () => {
                       borderColor: "transparent",
                     },
                     "& .MuiInputBase-input": {
-                      color: "#ccc",
+                      color: "#000", // Color del texto
                       backgroundColor: "transparent",
                     },
                   },
@@ -238,7 +244,7 @@ export const RequestAddForm = () => {
             </LocalizationProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                label="End Date"
+                label="End Date *"
                 minDate={dayjs(request.startDate)}
                 onChange={(newValue: Dayjs | null) => {
                   if (newValue) {
@@ -251,7 +257,7 @@ export const RequestAddForm = () => {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: 0,
-                    width: "109%",
+                    width: "100%",
                     font: "verdana, sans-serif",
                     "& fieldset": {
                       borderColor: "transparent",
@@ -265,7 +271,7 @@ export const RequestAddForm = () => {
                       borderColor: "transparent", // Evita el borde en foco
                     },
                     "& .MuiInputBase-input": {
-                      color: "#ccc", // Color del texto
+                      color: "#000", // Color del texto
                       backgroundColor: "transparent", // Color de fondo
                     },
                   },
@@ -296,11 +302,11 @@ export const RequestAddForm = () => {
                 })
               }
             />
-            <span>Description</span>
+            <span>Description *</span>
             <span></span>
           </Box>
           <Box className="input-box">
-            <Button onClick={handleUploadClick}>UPLOAD</Button>
+            <Button onClick={handleUploadClick}>Save</Button>
           </Box>
         </Box>
       </Box>

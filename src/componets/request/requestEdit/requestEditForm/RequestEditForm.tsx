@@ -85,7 +85,7 @@ export const RequestEditForm = () => {
   useEffect(() => {
     if (isActionOf(result.action, uploadRequestEditSuccessReducer)) {
       dispatch(RequestListAction());
-      NotificationManager.success(result.messageUser, "success", 3000);
+      NotificationManager.success(result.messageUser, "Success", 3000);
       dispatch(closeEditForm());
     }
     if (isActionOf(result.action, uploadRequestEditErrorReducer)) {

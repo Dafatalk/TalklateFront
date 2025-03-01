@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap");
 
 .page-contain {
-  margin-top: 5%;
+  /* margin-top: 5%; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   align-items: center;
   justify-content: center;
   background: #e7f3f1;
-  padding: 2em;
+  padding-top: 70px;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -29,6 +29,29 @@
     transform 0.45s ease,
     background 0.45s ease;
 }
+
+.data-card .request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20%;
+}
+
+.data-card .request-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 60%;
+}
+
+.data-card .request-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 20%;
+}
+
 .data-card h3 {
   color: #2e3c40;
   font-size: 2em;
@@ -45,35 +68,40 @@
 }
 .data-card h4 {
   color: #000000;
+  text-align: center;
   text-transform: uppercase;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 700;
   line-height: 1;
+  padding-bottom: 0.5em;
+  margin: 0 0 0.142857143em;
+  border-bottom: 2px solid #4085ae;
   letter-spacing: 0.1em;
-  margin: 0 0 1.777777778em;
+  /* margin: 0 0 1.777777778em; */
   transition: color 0.45s ease;
 }
 .data-card p {
-  opacity: 0;
-  color: #ffffff;
+  color: #2e3c40;
   font-weight: 600;
   line-height: 1.8;
-  height: 7em;
-  word-break: break-all;
+  height: 100%;
+  word-break: break-word;
   overflow-y: auto;
   margin: 0 0 1.25em;
-  transform: translateY(-1em);
+  padding-top: 5px;
+  /* transform: translateY(-1em); */
   transition:
     opacity 0.45s ease,
     transform 0.5s ease;
 }
 .data-card .link-text {
-  display: block;
+  display: flex;
+  align-items: center;
   color: #4085ae;
-  font-size: 1.125em;
+  font-size: 0.9em;
   font-weight: 600;
   line-height: 1.2;
-  margin: auto 0 0;
+  padding: 1em;
   transition: color 0.45s ease;
 }
 .data-card .link-text svg {
@@ -84,10 +112,10 @@
   transition: fill 0.45s ease;
 }
 .data-card:hover {
-  background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
+  /* background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3); */
   transform: scale(1.02);
 }
-.data-card:hover h3 {
+/* .data-card:hover h3 {
   color: #ffffff;
   border-bottom-color: #5aa1cb;
 }
@@ -111,7 +139,7 @@
 
 .data-card:hover Button:hover {
   background-color: #56a1a8;
-}
+} */
 
 .data-card:hover .link-text svg path {
   fill: #ffffff;

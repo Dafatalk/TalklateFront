@@ -1,9 +1,20 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Oscurecer fondo */
+  z-index: 9;
+  transition: opacity 0.3s ease-in;
+}
+
 .box {
   padding: 20px 50px;
   max-width: 20%;
   background: #fff;
   border-radius: 10px;
-  width: 400px;
+  width: 600px;
   box-shadow:
     2px 4px 4px #dcdcdc,
     -2px 4px 4px #dcdcdc;
@@ -22,6 +33,17 @@
   box-shadow:
     2px 4px 4px #dcdcdc,
     -2px 4px 4px #dcdcdc;
+    z-index: 10;
+}
+.box.register-box.expanded ~ .overlay {
+  visibility: visible;
+  opacity: 1;
+}
+.box.register-box.expanded {
+  width: 600px;
+  height: auto;
+  border-radius: 10px;
+  padding: 20px 50px;
 }
 .box .header {
   height: 50px;
@@ -40,7 +62,7 @@
   display: inline-block;
   height: 100%;
   width: 8px;
-  background: #b3c6c2;
+  background: #000;
 }
 .box .content {
   padding: 10px;
@@ -49,7 +71,7 @@
   padding: 10px;
 }
 .box .content .input-box {
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 0px;
   text-align: center;
   width: 100%;
@@ -58,7 +80,7 @@
 .box .content .input-box input {
   width: 100%;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #000;
   height: 40px;
   line-height: 40px;
   font-size: 0.9em;
@@ -69,10 +91,10 @@
 .box .content .input-box .inputD {
   width: 100%;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #000;
   height: 80px;
   line-height: 40px;
-  font-size: 1.3em;
+  /* font-size: 0.9em; */
   outline: none;
   background: transparent;
   resize: none;
@@ -80,13 +102,13 @@
 }
 .box .content .input-box .inputD:focus + span:first-of-type,
 .box .content .input-box .inputD:not(:placeholder-shown) + span:first-of-type {
-  font-size: 0.8em;
+  font-size: 0.9em;
   top: -10px;
 }
 
 .box .content .input-box input:focus + span:first-of-type,
 .box .content .input-box input:not(:placeholder-shown) + span:first-of-type {
-  font-size: 0.8em;
+  font-size: 0.7em;
   top: -10px;
 }
 .box .content .input-box input:focus ~ span:last-of-type,
@@ -113,18 +135,18 @@
 }
 .box .content .input-box button {
   width: 70%;
-  background: transparent;
+  background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
   border: 1px solid #ccc;
   padding: 15px;
-  color: #ccc;
+  color: #ffff;
   cursor: pointer;
   border-radius: 8px;
 }
 .box .content .input-box .buttone {
-  background: transparent;
+  background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
   border: 1px solid #ccc;
   padding: 15px;
-  color: #ccc;
+  color: #ffff;
   cursor: pointer;
   border-radius: 8px;
 }
@@ -140,7 +162,7 @@
 }
 
 .box.register-box {
-  background-image: linear-gradient(to top, #648483, #86a6a3, #a4c4bd);
+  background-image: linear-gradient(to top, #fff, #fff, #fff);
   width: 1;
   overflow: hidden;
   border-radius: 50px;
@@ -148,7 +170,7 @@
 }
 
 .box.register-box .header {
-  color: #fff;
+  color: #538683;
 }
 .columns {
   display: grid;
@@ -157,7 +179,7 @@
 }
 
 .box.register-box .header:before {
-  background: #fff;
+  background: #538683;
   opacity: 0;
 }
 .box.register-box .header h3 {
@@ -169,10 +191,10 @@
 }
 
 .box.register-box .content .input-box input {
-  color: #fff;
+  color: #000;
 }
 .box.register-box .content .input-box .inputD {
-  color: #fff;
+  color: #000;
 }
 .box.register-box .content .input-box .buttone {
   width: 20%;
@@ -198,8 +220,8 @@
   left: 50%;
   right: 50%;
   width: 40%;
-  min-width: 400px;
-  height: 450px; /* Ajusta la altura */
+  min-width: 800px;
+  height: 480px; /* Ajusta la altura */
   transition: all 0.3s ease-in;
 
   transform: translate(-50%, -50%);

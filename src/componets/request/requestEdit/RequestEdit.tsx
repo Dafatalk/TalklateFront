@@ -17,6 +17,7 @@ export const RequestEdit = (data: requestData) => {
   };
   return (
     <IconButton
+      size="small"
       onClick={handleOpenClick}
       sx={{
         "&:hover": {

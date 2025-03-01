@@ -1,5 +1,4 @@
-import { Box, Button, Card, IconButton } from "@mui/material";
-import { RequestEdit } from "./requestEdit/RequestEdit";
+import { Box, Card } from "@mui/material";
 import { RequestList } from "./requestList/RequestList";
 import { RequestEditForm } from "./requestEdit/requestEditForm/RequestEditForm";
 
@@ -10,17 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/mapStore";
 import { useEffect } from "react";
 import { RequestListAction } from "./requestList/_redux/requestListAction";
-import Cookies from "js-cookie"; // Importar js-cookie para acceder a las cookies
-import DeleteIcon from "@mui/icons-material/Delete";
-import { uploadRequestDeleteAction } from "./requestDelete/_redux/requestDeleteAction";
 import { isActionOf } from "../../core/redux/actions";
 import {
   uploadRequestDeleteSuccessReducer,
   uploadRequestDeleteErrorReducer,
 } from "./requestDelete/_redux/requestDeleteReducer";
 import { NotificationManager } from "react-notifications";
-import { RequestModel } from "../../core/models/RequestModel";
-import { uploadRequestEditAction } from "./requestEdit/_redux/requestEditAction";
 
 export const Request = () => {
   const dispatch = useDispatch();
@@ -29,32 +23,21 @@ export const Request = () => {
     (state: RootState) => state.listRequest.result.list
   );
   const result = useSelector((state: RootState) => state.deletRequest.result);
-  const cookiesUsername = Cookies.get("username");
-  const handleDeleteClick = (id: string) => {
-    dispatch(uploadRequestDeleteAction(id));
-  };
-  const handleUploadClick = (request: RequestModel) => {
-    const updatedRequest: RequestModel = {
-      ...request,
-      translator: cookiesUsername ?? null,
-    };
-    dispatch(uploadRequestEditAction(updatedRequest));
-  };
 
   useEffect(() => {
     dispatch(RequestListAction());
-  }, [dispatch, RequestAddForm]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isActionOf(result.action, uploadRequestDeleteSuccessReducer)) {
       dispatch(RequestListAction());
-      NotificationManager.success(result.messageUser, "success", 3000);
+      NotificationManager.success(result.messageUser, "Success", 3000);
     }
 
     if (isActionOf(result.action, uploadRequestDeleteErrorReducer)) {
       NotificationManager.error(result.error, "error", 3000);
     }
-  }, [result]);
+  }, [dispatch, result]);
   return (
     <>
       <section className="page-contain">
@@ -63,42 +46,6 @@ export const Request = () => {
             <Box key={request.id}>
               <Card className="data-card">
                 <RequestList request={request} />
-                <Box
-                  sx={{
-                    justifyContent: "flex-end",
-                    display: "flex",
-                    position: "relative",
-                    top: "70px",
-                    left: "30px",
-                  }}
-                >
-                  {cookiesUsername === request.creator ? (
-                    <>
-                      <RequestEdit request={request} />
-                      <IconButton
-                        onClick={() => handleDeleteClick(request.id)}
-                        sx={{
-                          "&:hover": {
-                            color: "rgb(232, 46, 46)",
-                          },
-                        }}
-                        aria-label="delete"
-                      >
-                        <DeleteIcon />
-                      </IconButton>
-                    </>
-                  ) : (
-                    <>
-                      {request.translator == null ? (
-                        <Button onClick={() => handleUploadClick(request)}>
-                          take the job
-                        </Button>
-                      ) : (
-                        <h4>the job was taken by {request.translator}</h4>
-                      )}
-                    </>
-                  )}
-                </Box>
               </Card>
             </Box>
           ))

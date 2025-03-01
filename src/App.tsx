@@ -1,12 +1,12 @@
 import { AppRoutes } from "./componets/routes/AppRoutes";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
+import ResponsiveAppBar from "./componets/nav_var/navbar";
 
-type Props = {};
-
-export default function App({}: Props) {
+export default function App() {
   return (
     <>
+      <ResponsiveAppBar />
       <NotificationContainer />
       <AppRoutes />;
     </>
