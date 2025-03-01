@@ -14,11 +14,16 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "../../assets/logo.png"; // Sube dos niveles para acceder a assets
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/mapStore";
 
 const pages = ["Request"];
 const settings = ["Logout"];
 
 function ResponsiveAppBar() {
+  const result = useSelector((state: RootState) => state.login.result);
+
+
   const navigate = useNavigate(); // Usa useNavigate para manejar la navegación
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -43,7 +48,7 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
     Cookies.remove("username");
     Cookies.remove("token");
-    navigate("/");
+    // navigate("/");
   };
 
   return (
@@ -113,11 +118,15 @@ function ResponsiveAppBar() {
               ))}
             </Box>
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
+              {/* AQUI */}
+              {Cookies.get("username") == "NADA"
+                ? <></>
+                : <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  </IconButton>
+                </Tooltip>
+              }
               <Menu
                 sx={{ mt: "45px" }}
                 id="menu-appbar"

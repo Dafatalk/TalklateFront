@@ -9,14 +9,17 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+
 import {
   Box,
-  Button,
   FormControl,
+  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import { isActionOf } from "../../../core/redux/actions";
@@ -132,7 +135,7 @@ export const Singin = () => {
   return (
     <>
       <Box
-        className={`login-box register-box ${isRegisterOpen ? "open" : ""}`}
+        className={`login-box register-box ${isRegisterOpen ? "open" : "closed"}`}
         onClick={handleOpenClick}
       >
         <a onClick={handleCloseClick} className="close">
@@ -146,7 +149,7 @@ export const Singin = () => {
             <Box className="input-box">
               <TextField
                 error={emptyInput.name}
-                label="Name"
+                label="Name *"
                 variant="standard"
                 className="textfield-container"
                 type="text"
@@ -163,7 +166,7 @@ export const Singin = () => {
             <Box className="input-box">
               <TextField
                 error={emptyInput.lastName}
-                label="Lastname"
+                label="Last name *"
                 variant="standard"
                 className="textfield-container"
                 type="text"
@@ -177,27 +180,77 @@ export const Singin = () => {
                 }
               />
             </Box>
-            <Box className="input-box">
-              <TextField
-                error={emptyInput.email}
-                label="Email"
-                variant="standard"
-                className="textfield-container"
-                type="text"
-                value={user.email}
-                placeholder=" "
-                onChange={(event) =>
-                  setUser({
-                    ...user,
-                    email: event.target.value,
-                  })
-                }
-              />
-            </Box>
+
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer
+                sx={{
+                  display: "flex",
+                  width: "100%", // Asegura que tome todo el ancho del contenedor
+
+                }}
+                components={["DatePicker"]}
+              >
+                <DatePicker
+                  label="Birthdate *"
+                  maxDate={minDate}
+                  onChange={(newValue: Dayjs | null) => {
+                    if (newValue) {
+                      setUser({
+                        ...user,
+                        birthDate: newValue.toDate(),
+                      });
+                    }
+                  }}
+                  sx={{
+                    "& .MuiTextField-root": {
+                      minWidth: "150px", // Fijar el ancho mínimo para evitar scroll
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 0,
+                      width: "100%",
+                      font: "verdana, sans-serif",
+                      fontSize: "0.9em",
+                      "& fieldset": {
+                        borderColor: "transparent",
+                        borderBottom: "1px solid #ccc",
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "transparent", // Evita el borde en hover
+                        borderBottom: "1px solid #ccc",
+
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "transparent", // Evita el borde en foco
+
+                      },
+                      "& .MuiInputBase-input": {
+                        color: "#595959", // Color del texto
+                        backgroundColor: "transparent", // Color de fondo
+                        // minWidth: "0px",
+                        // width: "100px"
+
+                      },
+                    },
+                    "& .MuiInputLabel-root": {
+                      color: "#000000", // Cambia el color de la etiqueta
+
+                    },
+                    "& .MuiIconButton-root": {
+                      color: "#ccc", // Cambia el color del icono
+                    },
+                    " .MuiStack-root css-10o2lyd-MuiStack-root": {
+                      flexDirection: "column",
+                    },
+
+                  }}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+
             <Box className="input-box">
               <TextField
                 error={emptyInput.username}
-                label="Username"
+                label="Username *"
                 variant="standard"
                 className="textfield-container"
                 type="text"
@@ -216,8 +269,9 @@ export const Singin = () => {
                 error={emptyInput.documentType}
                 variant="standard"
                 sx={{
-                  minWidth: 130,
-                  "& .MuiInputLabel-root": { color: "#ccc" }, // Color del label
+                  width: "100%"
+                  ,
+                  "& .MuiInputLabel-root": { color: "#000000" }, // Color del label
                   "& .MuiInputBase-root:before": { borderBottomColor: "#ccc" }, // Línea inferior del input
                   "& .MuiInputBase-root:hover:not(.Mui-disabled):before": {
                     borderBottomColor: "#ccc",
@@ -226,20 +280,20 @@ export const Singin = () => {
                   "& .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root::after":
                     { borderBottom: "2px solid #fff" },
                   "& label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root":
-                    { marginTop: "16px", color: "white" },
+                    { marginTop: "16px", color: "#828282" },
                   "& .MuiSelect-icon": { display: "none" }, // Oculta la flecha del select
                 }}
               >
                 <InputLabel
-                  sx={{ fontSize: "0.9em" }}
+                  sx={{ fontSize: "1em" }}
                   id="demo-simple-select-standard-label"
                 >
-                  Document Type
+                  Document type *
                 </InputLabel>
                 <Select
                   id="demo-simple-select-standard"
                   value={user.documentType}
-                  label="Origin Language"
+                  label="Origin Language *"
                   onChange={(event) =>
                     setUser({
                       ...user,
@@ -257,7 +311,7 @@ export const Singin = () => {
             <Box className="input-box">
               <TextField
                 error={emptyInput.documentNumber}
-                label="Document"
+                label="Document *"
                 variant="standard"
                 className="textfield-container"
                 type="text"
@@ -269,6 +323,17 @@ export const Singin = () => {
                     documentNumber: event.target.value,
                   })
                 }
+                slotProps={{
+                  input: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Tooltip title="No special characters like points, comma, etc.">
+                          <HelpOutlineIcon fontSize="small" sx={{ cursor: "pointer" }} />
+                        </Tooltip>
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
             </Box>
             <Box className="input-box">
@@ -291,7 +356,7 @@ export const Singin = () => {
             <Box className="input-box">
               <TextField
                 error={emptyInput.password}
-                label="Password"
+                label="Password *"
                 variant="standard"
                 className="textfield-container"
                 id="password"
@@ -303,79 +368,64 @@ export const Singin = () => {
                     password: event.target.value,
                   })
                 }
+                slotProps={{
+                  input: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Tooltip title="Password must be at least 8 characters long,
+contain at least one number,
+one uppercase letter,
+one special character,
+and no whitespace">
+                          <HelpOutlineIcon fontSize="small" sx={{ cursor: "pointer" }} />
+                        </Tooltip>
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
-              {/* <span></span>
-              <span></span> */}
+
             </Box>
           </Box>
-          <Box>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  width: "100%", // Asegura que tome todo el ancho del contenedor
-                }}
-                components={["DatePicker"]}
-              >
-                <DatePicker
-                  label="Fecha de nacimiento"
-                  maxDate={minDate}
-                  onChange={(newValue: Dayjs | null) => {
-                    if (newValue) {
-                      setUser({
-                        ...user,
-                        birthDate: newValue.toDate(),
-                      });
-                    }
-                  }}
-                  sx={{
-                    "& .MuiOutlinedInput-root": {
-                      borderRadius: 0,
-                      width: "100%",
-                      font: "verdana, sans-serif",
-                      "& fieldset": {
-                        borderColor: "transparent",
-                        borderBottom: "1px solid #ccc",
-                      },
-                      "&:hover fieldset": {
-                        borderColor: "transparent", // Evita el borde en hover
-                        borderBottom: "1px solid #ccc",
-                      },
-                      "&.Mui-focused fieldset": {
-                        borderColor: "transparent", // Evita el borde en foco
-                      },
-                      "& .MuiInputBase-input": {
-                        color: "#ffff", // Color del texto
-                        backgroundColor: "transparent", // Color de fondo
-                      },
-                    },
-                    "& .MuiInputLabel-root": {
-                      color: "#ccc", // Cambia el color de la etiqueta
-                    },
-                    "& .MuiIconButton-root": {
-                      color: "#ccc", // Cambia el color del icono
-                    },
-                    " .MuiStack-root css-10o2lyd-MuiStack-root": {
-                      flexDirection: "column",
-                    },
-                  }}
-                />
-              </DemoContainer>
-            </LocalizationProvider>
+          <Box className="input-box">
+            <TextField
+              error={emptyInput.email}
+              label="Email *"
+              variant="standard"
+              className="textfield-container"
+              type="text"
+              value={user.email}
+              placeholder=" "
+              onChange={(event) =>
+                setUser({
+                  ...user,
+                  email: event.target.value,
+                })
+              }
+              slotProps={{
+                input: {
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Tooltip title="Like:  example@exa.com">
+                        <HelpOutlineIcon fontSize="small" sx={{ cursor: "pointer" }} />
+                      </Tooltip>
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
+
           </Box>
 
+
           <Box className="input-box">
-            <Button
+            <button
               onClick={() => {
                 handleRegisterClick();
               }}
-              size="small"
-              className="buttne"
-              type="button"
             >
-              SING UP
-            </Button>
+              Sign up
+            </button>
           </Box>
         </Box>
       </Box>

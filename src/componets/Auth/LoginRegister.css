@@ -9,10 +9,11 @@ body {
 
 .login-container {
   position: absolute;
-  top: 47%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .login-container:before {
   content: "";
   position: absolute;
@@ -26,21 +27,24 @@ body {
   z-index: -1;
   border-radius: 10px;
 }
+
 .login-container .login-box {
   padding: 20px 50px;
   background: #fff;
   border-radius: 10px;
-  width: 400px;
+  width: 550px;
   box-shadow:
     2px 4px 4px #dcdcdc,
     -2px 4px 4px #dcdcdc;
 }
+
 .login-container .login-box .header {
   height: 50px;
   line-height: 50px;
   position: relative;
   color: #4085ae;
 }
+
 .login-container .login-box .header:before {
   content: "";
   position: absolute;
@@ -51,12 +55,15 @@ body {
   width: 8px;
   background: #b3c6c2;
 }
+
 .login-container .login-box .content {
   padding: 10px;
 }
+
 .login-container .login-box .content {
   padding: 10px;
 }
+
 .login-container .login-box .content .input-box {
   margin-top: 15px;
   margin-bottom: 12px;
@@ -65,6 +72,7 @@ body {
   width: 100%;
   position: relative;
 }
+
 .login-container .login-box .content .input-box input {
   width: 100%;
   border: none;
@@ -74,30 +82,18 @@ body {
   outline: none;
   background: transparent;
 }
-.login-container
-  .login-box
-  .content
-  .input-box
-  input:focus
-  + span:first-of-type,
-.login-container
-  .login-box
-  .content
-  .input-box
-  input:not(:placeholder-shown)
-  + span:first-of-type {
+
+.login-container .login-box .content .input-box input:focus+span:first-of-type,
+.login-container .login-box .content .input-box input:not(:placeholder-shown)+span:first-of-type {
   font-size: 0.8em;
   top: -10px;
 }
-.login-container .login-box .content .input-box input:focus ~ span:last-of-type,
-.login-container
-  .login-box
-  .content
-  .input-box
-  input:not(:placeholder-shown)
-  ~ span:last-of-type {
+
+.login-container .login-box .content .input-box input:focus~span:last-of-type,
+.login-container .login-box .content .input-box input:not(:placeholder-shown)~span:last-of-type {
   width: 100%;
 }
+
 .login-container .login-box .content .input-box span:first-of-type {
   color: #ccc;
   position: absolute;
@@ -107,6 +103,7 @@ body {
   pointer-events: none;
   transition: all 0.1s linear;
 }
+
 .login-container .login-box .content .input-box span:last-of-type {
   position: absolute;
   left: 0;
@@ -116,15 +113,19 @@ body {
   background: #1f6b98;
   transition: all 0.2s linear;
 }
+
 .login-container .login-box .content .input-box button {
   width: 70%;
-  background: transparent;
+  background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
+  /* background: transparent; */
   border: 1px solid #ccc;
+  margin-top: 15px;
   padding: 15px;
-  color: #ccc;
+  color: #dfdfdf;
   cursor: pointer;
   border-radius: 8px;
 }
+
 .login-container .login-box .content .input-box .buttone {
   background: transparent;
   border: 1px solid #ccc;
@@ -133,6 +134,7 @@ body {
   cursor: pointer;
   border-radius: 8px;
 }
+
 .link {
   width: 20%;
   background: transparent;
@@ -143,14 +145,18 @@ body {
   border-radius: 8px;
 }
 
+
+
 .login-container .login-box .content .input-box button:hover {
-  background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
-  color: #ffff;
+  background-image: linear-gradient(to top, #619490, #87c1bc, #93d1c3);
+  color: #ffffff;
 }
+
 .login-container .login-box .content .input-box button:focus {
   background-image: linear-gradient(to top, #538683, #71b3ae, #79c3b3);
   color: #ffff;
 }
+
 .login-container .login-box .content .input-box .buttone:hover {
   background-image: linear-gradient(to top, #74908e, #97bdbb, #b1c9c8);
   color: #ffff;
@@ -163,8 +169,11 @@ body {
   font-size: 0.9em;
   padding-top: 20px;
 }
+
 .login-container .login-box.register-box {
-  background-image: linear-gradient(to top, #648483, #86a6a3, #a4c4bd);
+  /* background-image: linear-gradient(to top, #648483, #86a6a3, #a4c4bd); */
+  background: #fff;
+
   position: fixed;
   top: 30px;
   right: -20px;
@@ -176,40 +185,53 @@ body {
 }
 
 .login-container .login-box.register-box .header {
-  color: #fff;
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  color: #4085ae;
 }
+
 .columns {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Divide el espacio en dos columnas iguales */
-  gap: 15px; /* Espacio opcional entre columnas */
+  grid-template-columns: 1fr 1fr;
+  /* Divide el espacio en dos columnas iguales */
+  gap: 15px;
+  /* Espacio opcional entre columnas */
 }
 
 .login-container .login-box.register-box .header:before {
-  background: #fff;
+  background-image: linear-gradient(to top, #6f9f9c, #90cec9, #97dfd0);
   opacity: 0;
+
 }
+
 .login-container .login-box.register-box .header h3 {
   position: relative;
   top: -28px;
   left: -33px;
   font-size: 14px;
   transition: all 0.3s linear;
+
 }
 
 .login-container .login-box.register-box .content .input-box input {
   color: #fff;
 }
+
 .login-container .login-box.register-box .content .input-box .buttone {
   width: 20%;
 }
+
 .login-container .login-box.register-box .content .input-box span:last-of-type {
   background: #fff;
 }
+
 .login-container .login-box.register-box:not(.open):hover {
   cursor: pointer;
 }
+
 .login-container .login-box.register-box .close {
-  color: #fff;
+  color: #4085ae;
   font-size: 1.6em;
   position: absolute;
   top: 22px;
@@ -217,91 +239,129 @@ body {
   font-weight: bold;
   opacity: 0;
   cursor: pointer;
-  transition: all 0.3s linear;
+  transition: all 0.2s linear;
+
 }
+
 .login-container .login-box.register-box.open {
   top: 0;
   right: 0;
   width: 100%;
   height: 150%;
   border-radius: 10px;
+
 }
+
+.login-container .login-box.register-box.closed {
+
+  background-image: linear-gradient(to top, #6f9f9c, #90cec9, #97dfd0);
+  transition: all 0.1s linear;
+
+
+}
+
+.login-container .login-box.register-box.closed .header {
+  height: 50px;
+  line-height: 50px;
+  position: relative;
+  color: #ffffff;
+}
+
 .login-container .login-box.register-box.open .header:before {
   opacity: 1;
 }
+
 .login-container .login-box.register-box.open .header h3 {
   top: 0;
   left: 0;
   font-size: initial;
 }
+
 .login-container .login-box.register-box.open .close {
   transform: rotate(135deg);
   top: 43px;
   opacity: 1;
   transition: all 0.3s 0.3s linear;
+
 }
+
 /* DE LOS INPUTS */
 /* Contenedor general del TextField */
 .textfield-container {
   width: 100%;
   border: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #b7b7b7;
   height: 40px;
   line-height: 40px;
   font-size: 0.9em;
   outline: none;
   background: transparent;
-  transition: color 0.3s ease-in-out; /* Animación para el cambio de color */
+  transition: color 0.3s ease-in-out;
+  /* Animación para el cambio de color */
 }
 
 /* Estilo del label */
 .textfield-container .MuiInputLabel-root {
-  color: #ccc; /* Color del label */
-  transition: color 0.3s ease-in-out; /* Animación para el cambio de color */
+  color: #000000;
+  /* Color del label */
+  transition: color 0.3s ease-in-out;
+  /* Animación para el cambio de color */
 }
+
 /* Estilo del label */
 .textfield-container .MuiInputLabel-root.Mui-focused {
-  color: #d5d3d3; /* Color del label */
+  color: #d5d3d3;
+  /* Color del label */
   transition:
     transform 0.3s ease,
-    color 0.3s ease; /* Animación del movimiento */
+    color 0.3s ease;
+  /* Animación del movimiento */
 }
 
 /* Línea inferior por defecto */
 .textfield-container .MuiInputBase-root::before {
-  border-bottom: 1px solid #ccc; /* Línea inferior */
+  border-bottom: 1px solid #ccc;
+  /* Línea inferior */
 }
 
 /* Línea inferior cuando el TextField está en hover */
 .textfield-container .MuiInputBase-root:hover:not(.Mui-disabled)::before {
-  border-bottom-color: #ccc; /* Línea inferior cuando se pasa el mouse */
+  border-bottom-color: #ccc;
+  /* Línea inferior cuando se pasa el mouse */
 }
 
 /* Línea inferior cuando el TextField está enfocado */
 .textfield-container .MuiInputBase-root::after {
-  border-bottom: 2px solid #fff; /* Línea inferior blanca al enfocar */
-  transition: border-bottom 0.3s ease-in-out; /* Animación de la transición */
+  border-bottom: 2px solid #fff;
+  /* Línea inferior blanca al enfocar */
+  transition: border-bottom 0.3s ease-in-out;
+  /* Animación de la transición */
 }
 
 /* Ocultar ícono del select (si aplica) */
 .textfield-container .MuiSelect-icon {
-  display: none; /* Oculta la flecha del select */
+  display: none;
+  /* Oculta la flecha del select */
 }
 
 /* Espaciado adicional en el label cuando está asociado a un select */
-.textfield-container
-  label
-  + .css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root {
+.textfield-container label+.css-j218zi-MuiInputBase-root-MuiInput-root-MuiSelect-root {
   margin-top: 16px;
   color: white;
 }
 
 /* Estilo del contenido del TextField */
 .textfield-container .MuiInputBase-root {
-  color: #ccc; /* Color del texto del input */
+  color: #ccc;
+  /* Color del texto del input */
 }
 
 /* Hover en el label */
 .textfield-container .MuiInputLabel-root:hover {
-  color: #fff; /* Cambia el color del label al pasar el mouse */
+  color: #fff;
+  /* Cambia el color del label al pasar el mouse */
+}
+
+.textfield-container input {
+  color: #595959 !important;
 }

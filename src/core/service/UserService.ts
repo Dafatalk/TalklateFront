@@ -6,7 +6,7 @@ export class UserService {
 
   private static _instance: UserService;
 
-  private constructor() {}
+  private constructor() { }
   public static getInstance() {
     if (!UserService._instance) {
       UserService._instance = new UserService();

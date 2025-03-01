@@ -26,6 +26,8 @@ export const LogIn = () => {
 
   useEffect(() => {
     if (isActionOf(result.action, uploadLogInSuccessReducer)) {
+      console.log('entro');
+
       Cookies.set("token", result.token ?? "NADA", { expires: 7 });
       Cookies.set("username", result.username ?? "NADA", { expires: 7 });
       navigate("/request");
@@ -79,11 +81,13 @@ export const LogIn = () => {
           <span></span>
         </Box>
         <Box className="input-box">
-          <button onClick={handleLoginClick} className="buttone">
+          <button onClick={handleLoginClick}>
             SIGN IN
           </button>
           <Box>
-            <a>Forgot your password?</a>
+            {/* <a>Forgot your password?</a> */}
+            <a>    ­</a>
+
           </Box>
         </Box>
       </Box>

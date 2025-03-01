@@ -7,7 +7,7 @@ export class RequestService {
 
   private static _instance: RequestService;
 
-  private constructor() {}
+  private constructor() { }
   public static getInstance() {
     if (!RequestService._instance) {
       RequestService._instance = new RequestService();
