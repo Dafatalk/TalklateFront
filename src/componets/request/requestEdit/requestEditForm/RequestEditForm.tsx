@@ -48,7 +48,7 @@ export const RequestEditForm = () => {
         translator: requestData.translator,
       });
     }
-  }, [requestData]);
+  }, [requestData, username]);
 
   const dispatch = useDispatch();
   const [request, setRequest] = useState<RequestModel>({
@@ -62,8 +62,7 @@ export const RequestEditForm = () => {
     translator: "",
   });
   useEffect(() => {
-    if (result && result.error === false) {
-    }
+    if (result && result.error === false) { /* empty */ }
   }, [result, dispatch]);
 
   const isRequestEmpty = () => {

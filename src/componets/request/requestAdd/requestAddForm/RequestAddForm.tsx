@@ -86,7 +86,7 @@ export const RequestAddForm = () => {
         NotificationManager.error(result.messageUser, "Error", 3000);
       }
     }
-  }, [dispatch, result]);
+  }, [cookiesUsername, dispatch, request.finishDate, request.startDate, result]);
 
   const isNewRequestOpen = useSelector(
     (state: RootState) => state.addformstate.isNewRequestOpen
