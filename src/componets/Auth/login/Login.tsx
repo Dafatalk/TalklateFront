@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { UserLoginModel } from "../../../core/models/UserModel";
-import { uploadLogInAction } from "./_redux/logInAction";
+import { uploadLogInAction, resetAction } from "./_redux/logInAction";
 import { RootState } from "../../../store/mapStore";
 import { useNavigate } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
@@ -12,6 +12,7 @@ import { isActionOf } from "../../../core/redux/actions";
 import {
   uploadLogInErrorReducer,
   uploadLogInSuccessReducer,
+
 } from "./_redux/logInReducer";
 
 export const LogIn = () => {
@@ -27,10 +28,10 @@ export const LogIn = () => {
   useEffect(() => {
     if (isActionOf(result.action, uploadLogInSuccessReducer)) {
       console.log('entro');
-
       Cookies.set("token", result.token ?? "NADA", { expires: 7 });
       Cookies.set("username", result.username ?? "NADA", { expires: 7 });
       navigate("/request");
+      dispatch(resetAction())
     }
     if (isActionOf(result.action, uploadLogInErrorReducer)) {
       NotificationManager.error(result.messageUser, "Error", 3000);

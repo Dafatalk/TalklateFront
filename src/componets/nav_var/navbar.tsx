@@ -24,6 +24,7 @@ function ResponsiveAppBar() {
   const result = useSelector((state: RootState) => state.login.result);
 
 
+
   const navigate = useNavigate(); // Usa useNavigate para manejar la navegación
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -119,13 +120,13 @@ function ResponsiveAppBar() {
             </Box>
             <Box sx={{ flexGrow: 0 }}>
               {/* AQUI */}
-              {Cookies.get("username") == "NADA"
-                ? <></>
-                : <Tooltip title="Open settings">
+              {Cookies.get("username")
+                ? <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                   </IconButton>
                 </Tooltip>
+                : <></>
               }
               <Menu
                 sx={{ mt: "45px" }}
